@@ -1,0 +1,147 @@
+@import "_reset";
+@import "_fonts";
+@import "_mixin";
+
+// Colors
+$white: #FFFFFF;
+$black: #151B1F;
+$blue-dt: #004772;
+$orange: #f68e13;
+$green: #43B02A;
+$red: #F44336;
+$yellow: #FBD200;
+$blue: #3699F4;
+$purple: #8787FF;
+
+html {
+  overflow: auto;
+}
+
+body {
+  font-family: 'PTRootUI';
+  font-weight: 400;
+  background-color: $white;
+  color: $black;
+  margin: 0;
+  font-size: 20px !important;
+}
+
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1140px;
+  }
+}
+
+%title {
+  line-height: 1.1;
+  @include lg {
+    font-size: 50px;
+    margin-bottom: 35px;
+  }
+  @include md {
+    font-size: 40px;
+    margin-bottom: 25px;
+  }
+  @include xs {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+h1 {
+  @extend %title;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
+  background: $white;
+  @include element(inner) {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+  }
+}
+
+.s-main {
+  padding-top: 100px;
+  padding-right: 0px;
+  padding-bottom: 208px;
+  padding-left: 0px;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: inherit;
+  background-position: 50% 50%;
+}
+
+.s-slider {
+  .slick-prev {
+    left: -40px;
+  }
+  .slick-next {
+    right: -40px;
+  }
+  .slick-prev, .slick-next {
+    width: 30px;
+    height: 30px;
+    &::before {
+      color: $blue-dt;
+      font-size: 30px;
+    }
+  }
+}
+
+.footer {
+  .map {
+    height: 500px;
+  }
+  @include element(content) {
+    padding: 1rem 0;
+    color: $white;
+    background-color: $blue-dt;
+    h2 {
+      font-size: 20px;
+    }
+    .socials {
+      a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+        border-radius: 40px;
+        margin: 0 .25rem;
+        &:hover {
+          i {
+            color: $red;
+          }
+        }
+      }
+      i {
+        color: $blue-dt;
+        transition: .2s ease-in-out;
+      }
+    }
+  }
+}

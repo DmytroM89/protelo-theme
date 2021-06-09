@@ -1,0 +1,276 @@
+html, body, div, span, em, img, strong, sub, sup, b, u, i, dl, dt, dd, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td, td img {
+  vertical-align: top;
+}
+
+input, select, button, textarea {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+}
+
+input[type=radio] {
+  vertical-align: text-bottom;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+html {
+  height: 100% !important;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: Arial, sans-serif normal 16px/1.5;
+  font-weight: normal;
+  text-align: left;
+  color: #000;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+  color: red;
+}
+
+body input:required:valid,
+body textarea:required:valid {
+  color: green;
+}
+
+input, select, button, textarea {
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+
+label, input[type=button], input[type=submit], button {
+  cursor: pointer;
+  outline: none;
+}
+
+a {
+  color: #000;
+}
+
+a, input, button, a img, textarea {
+  transition: color 0.5s, background 0.5s, opacity 0.5s, border 0.5s;
+  outline: none;
+}
+a:hover, a:focus, input:hover, input:focus, button:hover, button:focus, a img:hover, a img:focus, textarea:hover, textarea:focus {
+  outline: none;
+}
+
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.wrapper {
+  margin: 0 auto;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "PTRootUI";
+  src: url("../fonts/PTRootUI_Light/PTRootUI_Light.eot?#iefix") format("embedded-opentype"), url("../fonts/PTRootUI_Light/PTRootUI_Light.woff2") format("woff2"), url("../fonts/PTRootUI_Light/PTRootUI_Light.woff") format("woff"), url("../fonts/PTRootUI_Light/PTRootUI_Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PTRootUI";
+  src: url("../fonts/PTRootUI_Regular/PTRootUI_Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/PTRootUI_Regular/PTRootUI_Regular.woff2") format("woff2"), url("../fonts/PTRootUI_Regular/PTRootUI_Regular.woff") format("woff"), url("../fonts/PTRootUI_Regular/PTRootUI_Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PTRootUI";
+  src: url("../fonts/PTRootUI_Medium/PTRootUI_Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/PTRootUI_Medium/PTRootUI_Medium.woff2") format("woff2"), url("../fonts/PTRootUI_Medium/PTRootUI_Medium.woff") format("woff"), url("../fonts/PTRootUI_Medium/PTRootUI_Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PTRootUI";
+  src: url("../fonts/PTRootUI_Bold/PTRootUI_Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/PTRootUI_Bold/PTRootUI_Bold.woff2") format("woff2"), url("../fonts/PTRootUI_Bold/PTRootUI_Bold.woff") format("woff"), url("../fonts/PTRootUI_Bold/PTRootUI_Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+/* Media mixins */
+html {
+  overflow: auto;
+}
+
+body {
+  font-family: "PTRootUI";
+  font-weight: 400;
+  background-color: #FFFFFF;
+  color: #151B1F;
+  margin: 0;
+  font-size: 20px !important;
+}
+
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1140px;
+  }
+}
+h1 {
+  line-height: 1.1;
+}
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 50px;
+    margin-bottom: 35px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  h1 {
+    font-size: 40px;
+    margin-bottom: 25px;
+  }
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  background: #FFFFFF;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+}
+
+.s-main {
+  padding-top: 100px;
+  padding-right: 0px;
+  padding-bottom: 208px;
+  padding-left: 0px;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: inherit;
+  background-position: 50% 50%;
+}
+
+.s-slider .slick-prev {
+  left: -40px;
+}
+.s-slider .slick-next {
+  right: -40px;
+}
+.s-slider .slick-prev, .s-slider .slick-next {
+  width: 30px;
+  height: 30px;
+}
+.s-slider .slick-prev::before, .s-slider .slick-next::before {
+  color: #004772;
+  font-size: 30px;
+}
+
+.footer .map {
+  height: 500px;
+}
+.footer-content {
+  padding: 1rem 0;
+  color: #FFFFFF;
+  background-color: #004772;
+}
+.footer-content h2 {
+  font-size: 20px;
+}
+.footer-content .socials a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 40px;
+  margin: 0 0.25rem;
+}
+.footer-content .socials a:hover i {
+  color: #F44336;
+}
+.footer-content .socials i {
+  color: #004772;
+  transition: 0.2s ease-in-out;
+}
