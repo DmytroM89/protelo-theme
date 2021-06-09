@@ -26,6 +26,7 @@ body {
   font-size: 20px !important;
 }
 
+// Custom container width
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
