@@ -79,3 +79,21 @@ function my_acf_google_map_api( $api ){
 }
 
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page();
+
+}
+
+add_action('init', function() {
+    pll_register_string('my-call-back', 'call_back');
+    pll_register_string('my-request-callback', 'request_callback');
+    pll_register_string('my-request-callback-text', 'request_callback_text');
+    pll_register_string('my-appointment', 'appointment');
+    pll_register_string('my-sign-up', 'sign_up');
+    pll_register_string('my-make-appointment', 'make_appointment');
+    pll_register_string('my-make-appointment-text', 'make_appointment_text');
+    pll_register_string('my-attention', 'attention');
+    pll_register_string('my-more-details', 'more_details');
+});

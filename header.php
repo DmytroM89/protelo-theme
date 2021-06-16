@@ -11,9 +11,7 @@
 
 		<meta name="format-detection" content="telephone=no">
 
-		<title>
-		<?php echo wp_title(''); ?>
-		</title>
+		<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title></title>
 		
         <?php wp_enqueue_script("jquery"); ?>
 		<?php wp_head(); ?>
@@ -45,7 +43,6 @@
                 100% { transform: rotate(360deg); }
             }
         </style>
-		
 	</head>
 	<body ontouchstart="">
 
@@ -61,12 +58,42 @@
                         <a href="/" class="logo me-4">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/protelo_logo.jpg" alt="logo">
                         </a>
-                        <div class="contacts d-flex align-items-center">
-                            <div class="phone"><a href="tel:096 938 96 48">096 938 96 48</a></div>
-                            <div class="email"><a href="mail:protelo@gmail.com">protelo@gmail.com</a></div>
+                        <div class="contacts">
+                            <?php
+                                $phones = get_field('phones', 'options');
+                                $email = get_field('email', 'options');
+
+                                $i = 1;
+                                if (is_array($phones) && !empty($phones)):
+                            ?>
+                                <div class="phone">
+                                    <i class="fas fa-phone fa-flip-horizontal me-2"></i>
+                                    <?php foreach ($phones as $phone) :?>
+                                        <?php if ($i < count($phones)) : ?>
+                                            <a href="tel:<?php echo $phone['phone'] ?>">
+                                                <?php echo $phone['phone'] ?>,
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="tel:<?php echo $phone['phone'] ?>">
+                                                <?php echo $phone['phone'] ?>
+                                            </a>
+                                        <?php endif; $i++;?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($email): ?>
+                            <div class="email">
+                                <i class="fas fa-envelope me-2"></i>
+                                <a href="mail:<?php echo $email ?>"><?php echo $email ?></a>
+                            </div>
+                            <?php endif; ?>
                         </div>
                         <div class="spacer"></div>
-                        <button type="button" class="btn btn-warning btn-callback" data-toggle="modal" data-target="#callbackModal">Обратный звонок</button>
+                        <button type="button" class="btn btn-warning btn-lg btn-callback-md" data-bs-toggle="modal" data-bs-target="#callbackModal">Обратный звонок</button>
+                        <button type="button" class="btn btn-warning btn-callback-xs" data-bs-toggle="modal" data-bs-target="#callbackModal">
+                            <i class="fas fa-phone-volume"></i>
+                        </button>
                     </div>
                 </div>
             </header>
