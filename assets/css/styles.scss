@@ -12,29 +12,71 @@ $red: #F44336;
 $yellow: #ffc107;
 $blue: #3699F4;
 $purple: #8787FF;
+$grey-5: #F3F4F4;
+$grey-10: #E8E8E9;
+$grey-20: #D0D1D2;
+$grey-40: #A1A4A5;
+$grey-60: #737679;
+$grey-80: #44494C;
 
-html {
-  overflow: auto;
-}
-
-body {
-  font-family: 'PTRootUI';
-  font-weight: 400;
-  background-color: $white;
-  color: $black;
-  margin: 0;
-  font-size: 20px !important;
-}
-
-img {
-  width: 100%;
-}
 
 // Custom container width
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
   }
+}
+
+@keyframes flip-down {
+  0% {
+    transform: perspective(2500px) rotateX(100deg);
+  }
+  50% {
+    transform: perspective(2500px) rotateX(-30deg);
+  }
+  75% {
+    transform: perspective(2500px) rotateX(15deg);
+  }
+  100% {
+    transform: perspective(2500px) rotateX(0);
+  }
+}
+
+html {
+  overflow: auto;
+}
+
+body {
+  height: 100%;
+  font-family: 'PTRootUI';
+  font-weight: 400;
+  background-color: $white;
+  color: $black;
+  margin: 0;
+  font-size: 20px !important;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $grey-10;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $blue-dt;
+  }
+}
+
+img {
+  width: 100%;
+}
+img, .image-compare-viewer,
+video, .service {
+  border-radius: 10px;
+}
+
+hr {
+  background-color: $grey-10;
+  opacity: 1;
 }
 
 @keyframes down {
@@ -73,10 +115,6 @@ img {
   font-size: 20px;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-
 h1 {
   @extend %title;
 }
@@ -96,8 +134,92 @@ h2 {
   }
 }
 
+.section-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-title {
+  @extend .section-title;
+  @include xs {
+    margin-bottom: 2rem;
+  }
+  @media (min-width: $md) {
+    margin-bottom: 3rem;
+  }
+}
+
+.service-title {
+  @extend %title;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: $blue-dt;
+}
+.service-title-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 45%;
+    height: 2px;
+    background-color: $yellow;
+  }
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+  i {
+    font-size: 14px;
+    transform: rotate(45deg);
+    color: $yellow;
+
+  }
+}
+
 .subtitle {
   margin-bottom: 2rem;
+  line-height: 1.2;
+  @include lg {
+    font-size: 22px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.p-section {
+  @include xs {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  @media (min-width: $md) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+.p-block {
+  @include xs {
+    padding-top: 50px;
+    padding-bottom: 15px;
+  }
+  @media (min-width: $md) {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+}
+
+.bg-grey {
+  background-color: $grey-5;
 }
 
 // Buttons
@@ -192,6 +314,7 @@ h2 {
 }
 
 .s-main {
+  height: 100vh;
   padding-right: 0px;
   padding-left: 0px;
   margin: 0;
@@ -217,113 +340,209 @@ h2 {
   }
 }
 
-.s-slider {
-  padding-bottom: 50px;
-  @include xs {
-    padding-top: 80px;
-  }
-  @media (min-width: $md) {
-    padding-top: 100px;
-  }
-  .slick-prev {
-    left: -60px;
-    &:before {
-      font-family: "Font Awesome 5 Free";
-      font-weight: bold;
-      content: "\f053";
-      @extend %icon;
-    }
-  }
-  .slick-next {
-    right: -60px;
-    &::before {
-      font-family: "Font Awesome 5 Free";
-      font-weight: bold;
-      content: "\f054";
-      @extend %icon;
-    }
-  }
-  .slick-prev, .slick-next {
-    width: 40px;
-    height: 40px;
-    border: 2px solid $blue-dt;
-    border-radius: 2rem;
-    &:hover {
-      background-color: $blue-dt;
-      &::before {
-        color: $white;
-      }
-    }
-    &::before {
-      color: $blue-dt;
-    }
-  }
-  .slick-dots {
-    bottom: -45px;
-    li {
-      button::before {
-        font-size: 15px;
-        color: $blue-dt;
-      }
-    }
-  }
-  img, .image-compare-viewer, video {
+.s-procedures {
+  .procedure {
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
     border-radius: 10px;
   }
-  .ba {
-    .ba-title {
-      display: flex;
-      margin-bottom: 1rem;
-      @media (max-width: $md-top) {
-        flex-direction: column;
-        align-items: center;
+  .procedure-anchor,
+  .procedure-link {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    &:hover {
+      &::before {
+        background-color: rgba($yellow, .5);
       }
-      @include lg {
-        flex-direction: row;
-        align-items: flex-start;
-        min-height: 92px;
+      .procedure-more {
+        opacity: 1;
+        transform: translateY(-70px);
       }
-      i {
-        font-size: 40px;
-        color: $blue-dt;
-        @media (max-width: $md-top) {
-          margin-bottom: .5rem;
-        }
-        @include lg {
-          margin-right: 1rem;
-        }
+    }
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($black, .5);
+      transition: background-color .4s ease-in-out;
+    }
+    .procedure-name, .procedure-more {
+      z-index: 1;
+    }
+    .procedure-name {
+      @media (max-width: 1023px) {
+        font-size: 34px;
       }
-      h4 {
-        line-height: 1.2;
-        @media (min-width: 1024px) and (max-width: $md-top) {
-          min-height: 84px;
-        }
+    }
+    .procedure-more {
+      position: absolute;
+      bottom: -25px;
+      opacity: 0;
+      transition: opacity .2s ease-in-out, transform .4s ease-in-out;
+    }
+  }
+}
+
+.about {
+  .block-title {
+    text-align: left;
+  }
+  button {
+    @media (max-width: $md-top) {
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}
+
+.zone {
+  @include element(description) {
+    font-size: 24px;
+    font-weight: 500;
+    ul {
+      margin-bottom: 0;
+      li {
+        margin-bottom: 1rem;
       }
     }
   }
-  .advantages {
-    .advantages-item {
-      display: flex;
-      @include xs {
-        flex-direction: column;
-        align-items: center;
+}
+
+.ba {
+  .block-title {
+    @include xs {
+      margin-bottom: 2rem;
+    }
+    @media (min-width: $md) {
+      margin-bottom: 3rem;
+    }
+  }
+  .ba-title {
+    display: flex;
+    margin-bottom: 1rem;
+    @media (max-width: $md-top) {
+      flex-direction: column;
+      align-items: center;
+    }
+    @include lg {
+      flex-direction: row;
+      align-items: flex-start;
+      min-height: 92px;
+    }
+    i {
+      font-size: 40px;
+      color: $blue-dt;
+      @media (max-width: $md-top) {
+        margin-bottom: .5rem;
       }
-      @media (min-width: $md) {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-      i {
-        font-size: 40px;
+      @include lg {
         margin-right: 1rem;
+      }
+    }
+    h4 {
+      line-height: 1.2;
+      @media (min-width: 1024px) and (max-width: $md-top) {
+        min-height: 84px;
+      }
+    }
+  }
+}
+
+.advantages {
+  .advantages-item {
+    display: flex;
+    @include xs {
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (min-width: $md) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    i {
+      font-size: 40px;
+      margin-right: 1rem;
+      color: $blue-dt;
+      &.fa-3x {
+        font-size: 3em !important;
+      }
+    }
+    p {
+      line-height: 1.2;
+      @include xs {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.how {
+  @include xs {
+    img {
+      width: 50%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.opinion {
+  i {
+    color: $blue-dt;
+    margin-bottom: .5rem;
+  }
+  @include element(text) {
+    font-style: italic;
+    margin-bottom: 2rem;
+    @media (min-width: $md) {
+      font-size: 22px;
+    }
+  }
+  @include element(expert) {
+    display: flex;
+    .expert-photo {
+      width: 128px;
+      height: 128px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 100%;
+      border: 4px solid $white;
+      margin-right: 1rem;
+    }
+    .expert-info {
+      padding-top: .75rem;
+      @include xs {
+        width: 50%;
+      }
+      .name {
+        font-weight: 700;
+        margin-bottom: 0;
         color: $blue-dt;
-        &.fa-3x {
-          font-size: 3em !important;
+        @include xs {
+          font-size: 20px;
+        }
+        @media (min-width: $md) {
+          font-size: 22px;
         }
       }
-      p {
-        line-height: 1.2;
+      .position {
         @include xs {
-          text-align: center;
+          font-size: 16px;
+          line-height: 1.2;
         }
       }
     }
@@ -445,7 +664,7 @@ h2 {
     opacity: 1;
   }
   @media (max-width: $md-top) {
-    bottom: 70px;
+    bottom: 15px;
   }
   @include lg {
     bottom: 20px;
@@ -510,6 +729,71 @@ h2 {
     font-size: 1.25rem;
     &::placeholder {
       font-size: 1.25rem;
+    }
+  }
+}
+
+.s-price,
+.s-price-sub {
+  @extend .s-procedures;
+  .procedure {
+    height: 165px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    animation: flip-down;
+    animation-duration: 1000ms;
+    animation-delay: 100ms;
+    animation-iteration-count: 1;
+  }
+}
+
+.s-price-sub {
+  .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 2rem;
+    background-color: $blue-dt;
+    color: $white;
+  }
+  .service {
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    animation: flip-down;
+    animation-duration: 1000ms;
+    animation-delay: 100ms;
+    animation-iteration-count: 1;
+    &:hover {
+      cursor: pointer;
+    }
+    .service-image {
+      width: 100px;
+      height: 100px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .service-info {
+      width: calc(100% - 100px);
+      display: flex;
+      flex-direction: column;
+      padding: 5px 5px 5px 10px;
+    }
+    .service-name {
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .service-price {
+      text-align: right;
+      font-weight: bold;
+      color: $blue;
+    }
+    .service-note {
+      font-size: 12px;
+      text-align: right;
+      color: $blue;
     }
   }
 }

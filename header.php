@@ -16,6 +16,9 @@
         <?php wp_enqueue_script("jquery"); ?>
 		<?php wp_head(); ?>
 
+        <script type="text/javascript">
+            let postId = <?php echo get_the_ID(); ?>;
+        </script>
 		<style type="text/css">
             #page-preloader {
                 position: fixed;
@@ -52,7 +55,7 @@
 
 		<div class="wrapper">
 
-			<header class="header">
+			<header class="header" id="top">
                 <div class="container">
                     <div class="header-inner">
                         <a href="/" class="logo me-4">

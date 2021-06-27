@@ -5,185 +5,1328 @@
 
 get_header(); ?>
 
-    <section class="s-main" style="background-image: url('<?php the_field('s-main-bg'); ?>')">
+    <section class="s-main" style="background-image: url('<?php the_field('main_bg'); ?>')">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-7">
-                    <h1><?php the_field('s-main-title'); ?></h1>
-                    <p><?php the_field('s-main-description'); ?></p>
+                    <h1><?php the_field('main_title'); ?></h1>
+                    <p><?php the_field('main_description'); ?></p>
                     <a class="btn btn-warning btn-lg mt-5" href="#moreDetails" role="button"><?php pll_e('more_details');?></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="s-slider" id="moreDetails">
+    <?php
+    $procedures = get_field('procedures');
+
+    if (!empty($procedures) && is_array($procedures)):
+    ?>
+    <section class="s-procedures p-section" id="moreDetails">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="slider">
-                        <?php
-                        $textLeft = get_field('s-slider-tleft');
-
-                        if (!empty($textLeft['title'])):
-                        ?>
-                        <div class="slider-item">
-                            <div class="row">
-                                <div class="col-12 col-lg-5">
-                                    <h2><?php echo $textLeft['title']; ?></h2>
-                                    <p class="mb-0 mb-lg-4"><?php echo $textLeft['description']; ?></p>
-                                    <?php if (!empty($textLeft['appointment'])): ?>
-                                    <button type="button" class="btn btn-warning btn-lg mt-3 mb-4 mb-lg-0" data-bs-toggle="modal" data-bs-target="#appointmentModal">
-                                        <?php echo $textLeft['appointment']; ?>
-                                    </button>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="col-12 col-lg-7">
-                                    <img src="<?php echo $textLeft['img']; ?>" class="img-fluid" alt="slider img">
-                                </div>
-                            </div>
+                    <h2 class="section-title"><?php pll_e('types_of_procedures');?></h2>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($procedures as $procedure): ?>
+                    <div class="col-12 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <div class="procedure" style="background-image: url('<?php echo $procedure['image']; ?>')">
+                            <a class="procedure-anchor" href="#<?php echo $procedure['id']; ?>">
+                                <h3 class="procedure-name"><?php echo $procedure['name']; ?></h3>
+                                <p class="procedure-more mb-0"><?php pll_e('more_details');?></p>
+                            </a>
                         </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <hr>
+    </div>
+    <?php endif; ?>
+
+    <!-- Icoon Section -->
+    <?php
+    $icoonId = get_field('icoon_id');
+
+    if (!empty($icoonId)):
+    ?>
+    <section class="s-icoon p-section" id="<?php the_field('icoon_id'); ?>">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="service-title"><?php the_field('icoon_name'); ?></h1>
+                    <span class="service-title-divider">
+                        <i class="fas fa-square-full"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        $about = get_field('icoon_about');
+
+        if (!empty($about['title'])):
+        ?>
+        <div class="about p-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-5">
+                        <h2 class="block-title <?php if (!empty($about['subtitle'])) : ?>mb-3<?php endif; ?>">
+                            <?php echo $about['title']; ?>
+                        </h2>
+                        <?php if (!empty($about['subtitle'])): ?>
+                            <p class="subtitle fst-italic"><?php echo $about['subtitle']; ?></p>
                         <?php endif; ?>
 
-                        <?php
-                        $textTop = get_field('s-slider-ttop');
-
-                        if (!empty($textTop['title'])):
-                        ?>
-                        <div class="slider-item">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <h2><?php echo $textTop['title']; ?></h2>
-                                    <p class="subtitle text-center"><?php echo $textTop['description']; ?></p>
-                                    <img src="<?php echo $textTop['img']; ?>" class="img-fluid" alt="slider img">
-                                </div>
-                            </div>
-                        </div>
+                        <p class="mb-0 mb-lg-4"><?php echo $about['description']; ?></p>
+                        <?php if (!empty($about['appointment'])): ?>
+                            <button type="button" class="btn btn-warning btn-lg mt-3 mb-4 mb-lg-0" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                <?php echo $about['appointment']; ?>
+                            </button>
                         <?php endif; ?>
-
-                        <?php
-                        $textRight = get_field('s-slider-tright');
-
-                        if (!empty($textRight['title'])):
-                            ?>
-                            <div class="slider-item">
-                                <div class="row">
-                                    <div class="col-12 col-lg-7 mb-4 mb-lg-0">
-                                        <img src="<?php echo $textRight['img']; ?>" class="img-fluid" alt="slider img">
-                                    </div>
-                                    <div class="col-12 col-lg-5">
-                                        <h2><?php echo $textRight['title']; ?></h2>
-                                        <p><?php echo $textRight['description']; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php
-                        $beforeAfter = get_field('s-slider-ba');
-
-                        if (!empty($beforeAfter['items']) && is_array($beforeAfter['items'])):
-                        ?>
-                            <div class="slider-item ba">
-                                <div class="row mb-3">
-                                    <div class="col-12">
-                                        <h2 class="text-center"><?php echo $beforeAfter['title']; ?></h2>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <?php foreach ($beforeAfter['items'] as $baItem): ?>
-                                        <div class="col-12 col-lg-4 mb-5 mb-lg-0">
-                                            <div class="ba-title">
-                                                <?php echo $baItem['icon']; ?>
-                                                <h4><?php echo $baItem['title']; ?></h4>
-                                            </div>
-                                            <?php echo do_shortcode( '[compare]'.
-                                                '<img src="' . $baItem['photo-before'] . '" alt="BEFORE">'.
-                                                '<img src="' . $baItem['photo-after'] . '" alt="AFTER">'
-                                                .'[/compare]'); ?>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php
-                        $advantages = get_field('s-slider-advantages');
-
-                        if (!empty($advantages['items']) && is_array($advantages['items'])):
-                        ?>
-                        <div class="slider-item advantages">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h2 class="text-center"><?php echo $advantages['title']; ?></h2>
-                                    <?php if (!empty($advantages['subtitle'])): ?>
-                                    <p class="subtitle text-center"><?php echo $advantages['subtitle']; ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <?php foreach ($advantages['items'] as $item): ?>
-                                    <div class="col-12 col-md-4 mb-5 mb-md-0">
-                                        <div class="advantages-item">
-                                            <?php echo $item['icon']; ?>
-                                            <p><b><?php echo $item['name']; ?></b> <br><?php echo $item['description']; ?></p>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <?php if (!empty($advantages['appointment'])): ?>
-                            <div class="row d-flex justify-content-center mt-3 mt-md-5">
-                                <div class="col-12 col-md-6 text-center">
-                                    <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
-                                        <?php echo $advantages['appointment']; ?>
-                                    </button>
-                                    <?php if (!empty($advantages['text_under_btn']) && !empty($advantages['appointment'])): ?>
-                                    <p class="mb-0 fst-italic"><?php echo $advantages['text_under_btn']; ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-
-                        </div>
-                        <?php endif; ?>
-
-                        <?php
-                        $how = get_field('s-slider-how');
-
-                        if (!empty($how['title'])):
-                        ?>
-                        <div class="slider-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h2 class="text-center"><?php echo $how['title']; ?></h2>
-                                    <?php if (!empty($how['description'])): ?>
-                                    <p class="subtitle text-center"><?php echo $how['description']; ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <video class="w-100" src="<?php echo $how['video']; ?>" controls></video>
-                                </div>
-                            </div>
-
-                            <?php if (!empty($how['items']) && is_array($how['items'])): ?>
-                            <div class="row">
-                                <?php foreach ($how['items'] as $item): ?>
-                                <div class="col-12 col-md-6 col-lg-3">
-                                    <img src="<?php echo $item['image']; ?>" class="img-fluid w-100" alt="how img">
-                                    <p class="mt-3"><?php echo $item['description']; ?></p>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <?php endif; ?>
-                        </div>
-                        <?php endif; ?>
+                    </div>
+                    <div class="col-12 col-lg-7">
+                        <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image">
                     </div>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+
+        <?php
+        $whom = get_field('icoon_whom');
+
+        if (!empty($whom['title'])):
+        ?>
+        <div class="whom p-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="block-title <?php if (!empty($whom['subtitle'])) : ?>mb-3<?php endif; ?>">
+                            <?php echo $whom['title']; ?>
+                        </h2>
+                        <?php if (!empty($whom['subtitle'])): ?>
+                            <p class="subtitle text-center"><?php echo $whom['subtitle']; ?></p>
+                        <?php endif; ?>
+                        <img src="<?php echo $whom['image']; ?>" class="img-fluid" alt="slider img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $zone = get_field('icoon_zone');
+
+        if (!empty($zone['title'])):
+        ?>
+        <div class="zone p-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="block-title <?php if (!empty($zone['subtitle'])) : ?>mb-3<?php endif; ?>">
+                            <?php echo $zone['title']; ?>
+                        </h2>
+                        <?php if (!empty($zone['subtitle'])): ?>
+                            <p class="subtitle text-center"><?php echo $zone['subtitle']; ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-7 mb-4 mb-lg-0">
+                        <img src="<?php echo $zone['image']; ?>" class="img-fluid" alt="slider img">
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-5">
+                        <div class="zone-description"><?php echo $zone['description']; ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $beforeAfter = get_field('icoon_ba');
+
+        if (!empty($beforeAfter['items']) && is_array($beforeAfter['items'])):
+        ?>
+        <div class="ba p-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="block-title"><?php echo $beforeAfter['title']; ?></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php foreach ($beforeAfter['items'] as $baItem): ?>
+                        <div class="col-12 col-lg-4 mb-5 mb-lg-0">
+                            <div class="ba-title">
+                                <?php echo $baItem['icon']; ?>
+                                <h4><?php echo $baItem['title']; ?></h4>
+                            </div>
+                            <?php echo do_shortcode( '[compare]'.
+                                '<img src="' . $baItem['photo_before'] . '" alt="BEFORE">'.
+                                '<img src="' . $baItem['photo_after'] . '" alt="AFTER">'
+                                .'[/compare]'); ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $advantages = get_field('icoon_advantages');
+
+        if (!empty($advantages['items']) && is_array($advantages['items'])):
+            ?>
+            <div class="advantages p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($advantages['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $advantages['title']; ?>
+                            </h2>
+                            <?php if (!empty($advantages['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $advantages['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($advantages['items'] as $item): ?>
+                            <div class="col-12 col-md-4 mb-5 mb-md-0">
+                                <div class="advantages-item">
+                                    <?php echo $item['icon']; ?>
+                                    <div class="description">
+                                        <p><b><?php echo $item['name']; ?></b></p>
+                                        <p class="mb-0"><?php echo $item['description']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (!empty($advantages['appointment'])): ?>
+                    <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                        <div class="col-12 col-md-6 text-center">
+                            <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                <?php echo $advantages['appointment']; ?>
+                            </button>
+                            <?php if (!empty($advantages['text_under_btn']) && !empty($advantages['appointment'])): ?>
+                                <p class="mb-0 fst-italic"><?php echo $advantages['text_under_btn']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $how = get_field('icoon_how');
+
+        if (!empty($how['title'])):
+        ?>
+        <div class="how p-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="block-title <?php if (!empty($how['subtitle'])): ?>mb-3<?php endif; ?>">
+                            <?php echo $how['title']; ?>
+                        </h2>
+                        <?php if (!empty($how['subtitle'])): ?>
+                            <p class="subtitle text-center"><?php echo $how['subtitle']; ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <video class="w-100" src="<?php echo $how['video']; ?>" controls></video>
+                    </div>
+                </div>
+
+                <?php if (!empty($how['items']) && is_array($how['items'])): ?>
+                    <div class="row">
+                        <?php foreach ($how['items'] as $item): ?>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <img src="<?php echo $item['image']; ?>" class="img-fluid" alt="how img">
+                                <p class="mt-2 mb-4"><?php echo $item['description']; ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $appointment = get_field('icoon_appointment');
+
+        if (!empty($appointment['title'])):
+        ?>
+        <div class="appointment p-section bg-grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="block-title <?php if (!empty($appointment['subtitle'])): ?>mb-3<?php endif; ?>">
+                            <?php echo $appointment['title']; ?>
+                        </h2>
+                        <?php if (!empty($appointment['subtitle'])): ?>
+                            <p class="subtitle text-center"><?php echo $appointment['subtitle']; ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                    <div class="col-12 col-md-6 text-center">
+                        <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                            <?php pll_e('appointment');?>
+                        </button>
+                        <p class="mb-0 fst-italic"><?php echo $appointment['text_under_btn']; ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $contraindications = get_field('icoon_contraindications');
+
+        if (!empty($contraindications['title'])):
+        ?>
+        <div class="contraindications p-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="block-title <?php if (!empty($contraindications['subtitle'])): ?>mb-3<?php endif; ?>">
+                            <?php echo $contraindications['title']; ?>
+                        </h2>
+                        <?php if (!empty($contraindications['subtitle'])): ?>
+                            <p class="subtitle text-center"><?php echo $contraindications['subtitle']; ?></p>
+                        <?php endif; ?>
+                        <div class="d-flex justify-content-center">
+                            <?php echo $contraindications['description']; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php if (!empty($contraindications['appointment'])): ?>
+                    <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                        <div class="col-12 col-md-6 text-center">
+                            <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                <?php echo $contraindications['appointment']; ?>
+                            </button>
+                            <?php if (!empty($contraindications['text_under_btn']) && !empty($contraindications['appointment'])): ?>
+                                <p class="mb-0 fst-italic"><?php echo $contraindications['text_under_btn']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $opinion = get_field('icoon_opinion');
+
+        if (!empty($opinion['title'])):
+        ?>
+        <div class="opinion p-section bg-grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="block-title"><?php echo $opinion['title']; ?></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <?php echo $opinion['icon']; ?>
+                        <div class="opinion-text">
+                            <p class="mb-0"><?php echo $opinion['opinion']; ?></p>
+                        </div>
+                        <div class="opinion-expert">
+                            <div class="expert-photo">
+                                <img src="<?php echo $opinion['expert_photo']; ?>" alt="expert_photo">
+                            </div>
+                            <div class="expert-info">
+                                <p class="name"><?php echo $opinion['expert_name']; ?></p>
+                                <p class="position"><?php echo $opinion['expert_position']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-lg mt-5" href="#moreDetails" role="button">
+                <i class="fas fa-chevron-up me-2"></i>
+                <?php pll_e('types_of_services');?>
+            </a>
+        </div>
     </section>
+    <?php endif; ?>
+
+    <!-- Cryo Section -->
+    <?php
+    $cryoId = get_field('cryo_id');
+
+    if (!empty($cryoId)):
+    ?>
+    <section class="s-icoon p-section" id="<?php the_field('cryo_id'); ?>">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="service-title"><?php the_field('cryo_name'); ?></h1>
+                    <span class="service-title-divider">
+                        <i class="fas fa-square-full"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        $about = get_field('cryo_about');
+
+        if (!empty($about['title'])):
+            ?>
+            <div class="about p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <h2 class="block-title <?php if (!empty($about['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $about['title']; ?>
+                            </h2>
+                            <?php if (!empty($about['subtitle'])): ?>
+                                <p class="subtitle fst-italic"><?php echo $about['subtitle']; ?></p>
+                            <?php endif; ?>
+
+                            <p class="mb-0 mb-lg-4"><?php echo $about['description']; ?></p>
+                            <?php if (!empty($about['appointment'])): ?>
+                                <button type="button" class="btn btn-warning btn-lg mt-3 mb-4 mb-lg-0" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $about['appointment']; ?>
+                                </button>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $whom = get_field('cryo_whom');
+
+        if (!empty($whom['title'])):
+            ?>
+            <div class="whom p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2 class="block-title <?php if (!empty($whom['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $whom['title']; ?>
+                            </h2>
+                            <?php if (!empty($whom['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $whom['subtitle']; ?></p>
+                            <?php endif; ?>
+                            <img src="<?php echo $whom['image']; ?>" class="img-fluid" alt="slider img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $zone = get_field('cryo_zone');
+
+        if (!empty($zone['title'])):
+            ?>
+            <div class="zone p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($zone['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $zone['title']; ?>
+                            </h2>
+                            <?php if (!empty($zone['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $zone['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-7 mb-4 mb-lg-0">
+                            <img src="<?php echo $zone['image']; ?>" class="img-fluid" alt="slider img">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-5">
+                            <div class="zone-description"><?php echo $zone['description']; ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $beforeAfter = get_field('cryo_ba');
+
+        if (!empty($beforeAfter['items']) && is_array($beforeAfter['items'])):
+            ?>
+            <div class="ba p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title"><?php echo $beforeAfter['title']; ?></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($beforeAfter['items'] as $baItem): ?>
+                            <div class="col-12 col-lg-4 mb-5 mb-lg-0">
+                                <div class="ba-title">
+                                    <?php echo $baItem['icon']; ?>
+                                    <h4><?php echo $baItem['title']; ?></h4>
+                                </div>
+                                <?php echo do_shortcode( '[compare]'.
+                                    '<img src="' . $baItem['photo_before'] . '" alt="BEFORE">'.
+                                    '<img src="' . $baItem['photo_after'] . '" alt="AFTER">'
+                                    .'[/compare]'); ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $advantages = get_field('cryo_advantages');
+
+        if (!empty($advantages['items']) && is_array($advantages['items'])):
+            ?>
+            <div class="advantages p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($advantages['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $advantages['title']; ?>
+                            </h2>
+                            <?php if (!empty($advantages['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $advantages['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($advantages['items'] as $item): ?>
+                            <div class="col-12 col-md-4 mb-5 mb-md-0">
+                                <div class="advantages-item">
+                                    <?php echo $item['icon']; ?>
+                                    <div class="description">
+                                        <p><b><?php echo $item['name']; ?></b></p>
+                                        <p class="mb-0"><?php echo $item['description']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (!empty($advantages['appointment'])): ?>
+                        <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                            <div class="col-12 col-md-6 text-center">
+                                <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $advantages['appointment']; ?>
+                                </button>
+                                <?php if (!empty($advantages['text_under_btn']) && !empty($advantages['appointment'])): ?>
+                                    <p class="mb-0 fst-italic"><?php echo $advantages['text_under_btn']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $how = get_field('cryo_how');
+
+        if (!empty($how['title'])):
+            ?>
+            <div class="how p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($how['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $how['title']; ?>
+                            </h2>
+                            <?php if (!empty($how['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $how['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <video class="w-100" src="<?php echo $how['video']; ?>" controls></video>
+                        </div>
+                    </div>
+
+                    <?php if (!empty($how['items']) && is_array($how['items'])): ?>
+                        <div class="row">
+                            <?php foreach ($how['items'] as $item): ?>
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <img src="<?php echo $item['image']; ?>" class="img-fluid" alt="how img">
+                                    <p class="mt-2 mb-4"><?php echo $item['description']; ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $appointment = get_field('cryo_appointment');
+
+        if (!empty($appointment['title'])):
+            ?>
+            <div class="appointment p-section bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($appointment['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $appointment['title']; ?>
+                            </h2>
+                            <?php if (!empty($appointment['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $appointment['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                        <div class="col-12 col-md-6 text-center">
+                            <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                <?php pll_e('appointment');?>
+                            </button>
+                            <p class="mb-0 fst-italic"><?php echo $appointment['text_under_btn']; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $contraindications = get_field('cryo_contraindications');
+
+        if (!empty($contraindications['title'])):
+            ?>
+            <div class="contraindications p-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($contraindications['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $contraindications['title']; ?>
+                            </h2>
+                            <?php if (!empty($contraindications['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $contraindications['subtitle']; ?></p>
+                            <?php endif; ?>
+                            <div class="d-flex justify-content-center">
+                                <?php echo $contraindications['description']; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if (!empty($contraindications['appointment'])): ?>
+                        <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                            <div class="col-12 col-md-6 text-center">
+                                <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $contraindications['appointment']; ?>
+                                </button>
+                                <?php if (!empty($contraindications['text_under_btn']) && !empty($contraindications['appointment'])): ?>
+                                    <p class="mb-0 fst-italic"><?php echo $contraindications['text_under_btn']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $opinion = get_field('cryo_opinion');
+
+        if (!empty($opinion['title'])):
+            ?>
+            <div class="opinion p-section bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title"><?php echo $opinion['title']; ?></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <?php echo $opinion['icon']; ?>
+                            <div class="opinion-text">
+                                <p class="mb-0"><?php echo $opinion['opinion']; ?></p>
+                            </div>
+                            <div class="opinion-expert">
+                                <div class="expert-photo">
+                                    <img src="<?php echo $opinion['expert_photo']; ?>" alt="expert_photo">
+                                </div>
+                                <div class="expert-info">
+                                    <p class="name"><?php echo $opinion['expert_name']; ?></p>
+                                    <p class="position"><?php echo $opinion['expert_position']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-lg mt-5" href="#moreDetails" role="button">
+                <i class="fas fa-chevron-up me-2"></i>
+                <?php pll_e('types_of_services');?>
+            </a>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- Endo Section -->
+    <?php
+    $endoId = get_field('endo_id');
+
+    if (!empty($endoId)):
+    ?>
+    <section class="s-icoon p-section" id="<?php the_field('endo_id'); ?>">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="service-title"><?php the_field('endo_name'); ?></h1>
+                    <span class="service-title-divider">
+                        <i class="fas fa-square-full"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        $about = get_field('endo_about');
+
+        if (!empty($about['title'])):
+            ?>
+            <div class="about p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <h2 class="block-title <?php if (!empty($about['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $about['title']; ?>
+                            </h2>
+                            <?php if (!empty($about['subtitle'])): ?>
+                                <p class="subtitle fst-italic"><?php echo $about['subtitle']; ?></p>
+                            <?php endif; ?>
+
+                            <p class="mb-0 mb-lg-4"><?php echo $about['description']; ?></p>
+                            <?php if (!empty($about['appointment'])): ?>
+                                <button type="button" class="btn btn-warning btn-lg mt-3 mb-4 mb-lg-0" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $about['appointment']; ?>
+                                </button>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $whom = get_field('endo_whom');
+
+        if (!empty($whom['title'])):
+            ?>
+            <div class="whom p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2 class="block-title <?php if (!empty($whom['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $whom['title']; ?>
+                            </h2>
+                            <?php if (!empty($whom['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $whom['subtitle']; ?></p>
+                            <?php endif; ?>
+                            <img src="<?php echo $whom['image']; ?>" class="img-fluid" alt="slider img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $zone = get_field('endo_zone');
+
+        if (!empty($zone['title'])):
+            ?>
+            <div class="zone p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($zone['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $zone['title']; ?>
+                            </h2>
+                            <?php if (!empty($zone['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $zone['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-7 mb-4 mb-lg-0">
+                            <img src="<?php echo $zone['image']; ?>" class="img-fluid" alt="slider img">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-5">
+                            <div class="zone-description"><?php echo $zone['description']; ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $beforeAfter = get_field('endo_ba');
+
+        if (!empty($beforeAfter['items']) && is_array($beforeAfter['items'])):
+            ?>
+            <div class="ba p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title"><?php echo $beforeAfter['title']; ?></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($beforeAfter['items'] as $baItem): ?>
+                            <div class="col-12 col-lg-4 mb-5 mb-lg-0">
+                                <div class="ba-title">
+                                    <?php echo $baItem['icon']; ?>
+                                    <h4><?php echo $baItem['title']; ?></h4>
+                                </div>
+                                <?php echo do_shortcode( '[compare]'.
+                                    '<img src="' . $baItem['photo_before'] . '" alt="BEFORE">'.
+                                    '<img src="' . $baItem['photo_after'] . '" alt="AFTER">'
+                                    .'[/compare]'); ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $advantages = get_field('endo_advantages');
+
+        if (!empty($advantages['items']) && is_array($advantages['items'])):
+            ?>
+            <div class="advantages p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($advantages['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $advantages['title']; ?>
+                            </h2>
+                            <?php if (!empty($advantages['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $advantages['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($advantages['items'] as $item): ?>
+                            <div class="col-12 col-md-4 mb-5 mb-md-0">
+                                <div class="advantages-item">
+                                    <?php echo $item['icon']; ?>
+                                    <div class="description">
+                                        <p><b><?php echo $item['name']; ?></b></p>
+                                        <p class="mb-0"><?php echo $item['description']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (!empty($advantages['appointment'])): ?>
+                        <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                            <div class="col-12 col-md-6 text-center">
+                                <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $advantages['appointment']; ?>
+                                </button>
+                                <?php if (!empty($advantages['text_under_btn']) && !empty($advantages['appointment'])): ?>
+                                    <p class="mb-0 fst-italic"><?php echo $advantages['text_under_btn']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $how = get_field('endo_how');
+
+        if (!empty($how['title'])):
+            ?>
+            <div class="how p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($how['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $how['title']; ?>
+                            </h2>
+                            <?php if (!empty($how['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $how['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <video class="w-100" src="<?php echo $how['video']; ?>" controls></video>
+                        </div>
+                    </div>
+
+                    <?php if (!empty($how['items']) && is_array($how['items'])): ?>
+                        <div class="row">
+                            <?php foreach ($how['items'] as $item): ?>
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <img src="<?php echo $item['image']; ?>" class="img-fluid" alt="how img">
+                                    <p class="mt-2 mb-4"><?php echo $item['description']; ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $appointment = get_field('endo_appointment');
+
+        if (!empty($appointment['title'])):
+            ?>
+            <div class="appointment p-section bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($appointment['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $appointment['title']; ?>
+                            </h2>
+                            <?php if (!empty($appointment['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $appointment['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                        <div class="col-12 col-md-6 text-center">
+                            <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                <?php pll_e('appointment');?>
+                            </button>
+                            <p class="mb-0 fst-italic"><?php echo $appointment['text_under_btn']; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $contraindications = get_field('endo_contraindications');
+
+        if (!empty($contraindications['title'])):
+            ?>
+            <div class="contraindications p-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($contraindications['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $contraindications['title']; ?>
+                            </h2>
+                            <?php if (!empty($contraindications['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $contraindications['subtitle']; ?></p>
+                            <?php endif; ?>
+                            <div class="d-flex justify-content-center">
+                                <?php echo $contraindications['description']; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if (!empty($contraindications['appointment'])): ?>
+                        <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                            <div class="col-12 col-md-6 text-center">
+                                <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $contraindications['appointment']; ?>
+                                </button>
+                                <?php if (!empty($contraindications['text_under_btn']) && !empty($contraindications['appointment'])): ?>
+                                    <p class="mb-0 fst-italic"><?php echo $contraindications['text_under_btn']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $opinion = get_field('endo_opinion');
+
+        if (!empty($opinion['title'])):
+            ?>
+            <div class="opinion p-section bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title"><?php echo $opinion['title']; ?></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <?php echo $opinion['icon']; ?>
+                            <div class="opinion-text">
+                                <p class="mb-0"><?php echo $opinion['opinion']; ?></p>
+                            </div>
+                            <div class="opinion-expert">
+                                <div class="expert-photo">
+                                    <img src="<?php echo $opinion['expert_photo']; ?>" alt="expert_photo">
+                                </div>
+                                <div class="expert-info">
+                                    <p class="name"><?php echo $opinion['expert_name']; ?></p>
+                                    <p class="position"><?php echo $opinion['expert_position']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-lg mt-5" href="#moreDetails" role="button">
+                <i class="fas fa-chevron-up me-2"></i>
+                <?php pll_e('types_of_services');?>
+            </a>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ONDA Section -->
+    <?php
+    $ondaId = get_field('onda_id');
+
+    if (!empty($ondaId)):
+    ?>
+    <section class="s-icoon p-section" id="<?php the_field('onda_id'); ?>">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="service-title"><?php the_field('onda_name'); ?></h1>
+                    <span class="service-title-divider">
+                        <i class="fas fa-square-full"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        $about = get_field('onda_about');
+
+        if (!empty($about['title'])):
+            ?>
+            <div class="about p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <h2 class="block-title <?php if (!empty($about['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $about['title']; ?>
+                            </h2>
+                            <?php if (!empty($about['subtitle'])): ?>
+                                <p class="subtitle fst-italic"><?php echo $about['subtitle']; ?></p>
+                            <?php endif; ?>
+
+                            <p class="mb-0 mb-lg-4"><?php echo $about['description']; ?></p>
+                            <?php if (!empty($about['appointment'])): ?>
+                                <button type="button" class="btn btn-warning btn-lg mt-3 mb-4 mb-lg-0" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $about['appointment']; ?>
+                                </button>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $whom = get_field('onda_whom');
+
+        if (!empty($whom['title'])):
+            ?>
+            <div class="whom p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2 class="block-title <?php if (!empty($whom['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $whom['title']; ?>
+                            </h2>
+                            <?php if (!empty($whom['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $whom['subtitle']; ?></p>
+                            <?php endif; ?>
+                            <img src="<?php echo $whom['image']; ?>" class="img-fluid" alt="slider img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $zone = get_field('onda_zone');
+
+        if (!empty($zone['title'])):
+            ?>
+            <div class="zone p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($zone['subtitle'])) : ?>mb-3<?php endif; ?>">
+                                <?php echo $zone['title']; ?>
+                            </h2>
+                            <?php if (!empty($zone['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $zone['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-7 mb-4 mb-lg-0">
+                            <img src="<?php echo $zone['image']; ?>" class="img-fluid" alt="slider img">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-5">
+                            <div class="zone-description"><?php echo $zone['description']; ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $beforeAfter = get_field('onda_ba');
+
+        if (!empty($beforeAfter['items']) && is_array($beforeAfter['items'])):
+            ?>
+            <div class="ba p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title"><?php echo $beforeAfter['title']; ?></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($beforeAfter['items'] as $baItem): ?>
+                            <div class="col-12 col-lg-4 mb-5 mb-lg-0">
+                                <div class="ba-title">
+                                    <?php echo $baItem['icon']; ?>
+                                    <h4><?php echo $baItem['title']; ?></h4>
+                                </div>
+                                <?php echo do_shortcode( '[compare]'.
+                                    '<img src="' . $baItem['photo_before'] . '" alt="BEFORE">'.
+                                    '<img src="' . $baItem['photo_after'] . '" alt="AFTER">'
+                                    .'[/compare]'); ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $advantages = get_field('onda_advantages');
+
+        if (!empty($advantages['items']) && is_array($advantages['items'])):
+            ?>
+            <div class="advantages p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($advantages['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $advantages['title']; ?>
+                            </h2>
+                            <?php if (!empty($advantages['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $advantages['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($advantages['items'] as $item): ?>
+                            <div class="col-12 col-md-4 mb-5 mb-md-0">
+                                <div class="advantages-item">
+                                    <?php echo $item['icon']; ?>
+                                    <div class="description">
+                                        <p><b><?php echo $item['name']; ?></b></p>
+                                        <p class="mb-0"><?php echo $item['description']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (!empty($advantages['appointment'])): ?>
+                        <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                            <div class="col-12 col-md-6 text-center">
+                                <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $advantages['appointment']; ?>
+                                </button>
+                                <?php if (!empty($advantages['text_under_btn']) && !empty($advantages['appointment'])): ?>
+                                    <p class="mb-0 fst-italic"><?php echo $advantages['text_under_btn']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $how = get_field('onda_how');
+
+        if (!empty($how['title'])):
+            ?>
+            <div class="how p-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($how['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $how['title']; ?>
+                            </h2>
+                            <?php if (!empty($how['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $how['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <video class="w-100" src="<?php echo $how['video']; ?>" controls></video>
+                        </div>
+                    </div>
+
+                    <?php if (!empty($how['items']) && is_array($how['items'])): ?>
+                        <div class="row">
+                            <?php foreach ($how['items'] as $item): ?>
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <img src="<?php echo $item['image']; ?>" class="img-fluid" alt="how img">
+                                    <p class="mt-2 mb-4"><?php echo $item['description']; ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $appointment = get_field('onda_appointment');
+
+        if (!empty($appointment['title'])):
+            ?>
+            <div class="appointment p-section bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($appointment['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $appointment['title']; ?>
+                            </h2>
+                            <?php if (!empty($appointment['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $appointment['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                        <div class="col-12 col-md-6 text-center">
+                            <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                <?php pll_e('appointment');?>
+                            </button>
+                            <p class="mb-0 fst-italic"><?php echo $appointment['text_under_btn']; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $contraindications = get_field('onda_contraindications');
+
+        if (!empty($contraindications['title'])):
+            ?>
+            <div class="contraindications p-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title <?php if (!empty($contraindications['subtitle'])): ?>mb-3<?php endif; ?>">
+                                <?php echo $contraindications['title']; ?>
+                            </h2>
+                            <?php if (!empty($contraindications['subtitle'])): ?>
+                                <p class="subtitle text-center"><?php echo $contraindications['subtitle']; ?></p>
+                            <?php endif; ?>
+                            <div class="d-flex justify-content-center">
+                                <?php echo $contraindications['description']; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if (!empty($contraindications['appointment'])): ?>
+                        <div class="row d-flex justify-content-center mt-3 mt-md-5">
+                            <div class="col-12 col-md-6 text-center">
+                                <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                                    <?php echo $contraindications['appointment']; ?>
+                                </button>
+                                <?php if (!empty($contraindications['text_under_btn']) && !empty($contraindications['appointment'])): ?>
+                                    <p class="mb-0 fst-italic"><?php echo $contraindications['text_under_btn']; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $opinion = get_field('onda_opinion');
+
+        if (!empty($opinion['title'])):
+            ?>
+            <div class="opinion p-section bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="block-title"><?php echo $opinion['title']; ?></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <?php echo $opinion['icon']; ?>
+                            <div class="opinion-text">
+                                <p class="mb-0"><?php echo $opinion['opinion']; ?></p>
+                            </div>
+                            <div class="opinion-expert">
+                                <div class="expert-photo">
+                                    <img src="<?php echo $opinion['expert_photo']; ?>" alt="expert_photo">
+                                </div>
+                                <div class="expert-info">
+                                    <p class="name"><?php echo $opinion['expert_name']; ?></p>
+                                    <p class="position"><?php echo $opinion['expert_position']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-lg mt-5" href="#moreDetails" role="button">
+                <i class="fas fa-chevron-up me-2"></i>
+                <?php pll_e('types_of_services');?>
+            </a>
+        </div>
+    </section>
+    <?php endif; ?>
 
     <!-- Section SEO text -->
     <section class="s-seo">
@@ -303,7 +1446,7 @@ get_header(); ?>
     </section>
 
     <!-- Go To Top -->
-    <a href="#" class="scroll-up">
+    <a href="javascript:void(0);" class="scroll-up">
         <i class="fas fa-chevron-up"></i>
     </a>
 

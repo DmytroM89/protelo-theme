@@ -3,6 +3,8 @@ jQuery(document).ready(function($) {
     $('#page-preloader').fadeOut('slow');
     $('#page-preloader .fa-spinner').fadeOut('slow');
 
+    console.log('hello');
+
     // Slider
     $('.slider').slick({
         arrows: true,
@@ -57,8 +59,28 @@ jQuery(document).ready(function($) {
         }
     });
 
+    /**
+     * Scroll to top
+     */
     $('.scroll-up').click(function() {
         $('body,html').animate({scrollTop:0},400);
+    });
+
+    /**
+     * Scroll to anchor
+     */
+    $('a[href^="#"]').bind('click.smoothscroll', function(e) {
+        e.preventDefault();
+
+        let headerHeight = $('header').height();
+        let anchor = this.hash,
+        $anchor = $(anchor);
+
+        $('html, body').stop().animate({
+            'scrollTop': $anchor.offset().top - headerHeight
+        }, 100, 'swing', function () {
+            window.location.hash = target;
+        });
     });
 })
 

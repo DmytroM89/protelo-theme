@@ -96,4 +96,5 @@ add_action('init', function() {
     pll_register_string('my-make-appointment-text', 'make_appointment_text');
     pll_register_string('my-attention', 'attention');
     pll_register_string('my-more-details', 'more_details');
+    pll_register_string('my-types-of-procedures', 'types_of_procedures');
 });
