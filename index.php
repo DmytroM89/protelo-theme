@@ -33,7 +33,7 @@ get_header(); ?>
                 <?php foreach ($procedures as $procedure): ?>
                     <div class="col-12 col-md-6 col-lg-3 mb-5 mb-lg-0">
                         <div class="procedure" style="background-image: url('<?php echo $procedure['image']; ?>')">
-                            <a class="procedure-anchor" href="#<?php echo $procedure['id']; ?>">
+                            <a class="procedure-anchor <?php if ($procedure['id'] == 'icoon'): ?>active<?php endif; ?>" href="#<?php echo $procedure['id']; ?>">
                                 <h3 class="procedure-name"><?php echo $procedure['name']; ?></h3>
                                 <p class="procedure-more mb-0"><?php pll_e('more_details');?></p>
                             </a>
@@ -54,7 +54,7 @@ get_header(); ?>
 
     if (!empty($icoonId)):
     ?>
-    <section class="s-icoon p-section" id="<?php the_field('icoon_id'); ?>">
+    <section class="s-icoon p-section procedure-section active" id="<?php the_field('icoon_id'); ?>">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -374,7 +374,7 @@ get_header(); ?>
 
     if (!empty($cryoId)):
     ?>
-    <section class="s-icoon p-section" id="<?php the_field('cryo_id'); ?>">
+    <section class="s-cryo p-section procedure-section" id="<?php the_field('cryo_id'); ?>">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -694,7 +694,7 @@ get_header(); ?>
 
     if (!empty($endoId)):
     ?>
-    <section class="s-icoon p-section" id="<?php the_field('endo_id'); ?>">
+    <section class="s-endo p-section procedure-section" id="<?php the_field('endo_id'); ?>">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1014,7 +1014,7 @@ get_header(); ?>
 
     if (!empty($ondaId)):
     ?>
-    <section class="s-icoon p-section" id="<?php the_field('onda_id'); ?>">
+    <section class="s-onda p-section procedure-section" id="<?php the_field('onda_id'); ?>">
         <div class="container">
             <div class="row">
                 <div class="col-12">

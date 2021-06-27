@@ -520,12 +520,19 @@ h2 {
   justify-content: center;
   color: #FFFFFF;
 }
+.s-procedures .procedure-anchor.active::before, .s-price .procedure-anchor.active::before,
+.s-price-sub .procedure-anchor.active::before,
+.s-procedures .procedure-link.active::before,
+.s-price .procedure-link.active::before,
+.s-price-sub .procedure-link.active::before {
+  background-color: rgba(255, 193, 7, 0.6);
+}
 .s-procedures .procedure-anchor:hover::before, .s-price .procedure-anchor:hover::before,
 .s-price-sub .procedure-anchor:hover::before,
 .s-procedures .procedure-link:hover::before,
 .s-price .procedure-link:hover::before,
 .s-price-sub .procedure-link:hover::before {
-  background-color: rgba(255, 193, 7, 0.5);
+  background-color: rgba(255, 193, 7, 0.6);
 }
 .s-procedures .procedure-anchor:hover .procedure-more, .s-price .procedure-anchor:hover .procedure-more,
 .s-price-sub .procedure-anchor:hover .procedure-more,
@@ -578,6 +585,14 @@ h2 {
   bottom: -25px;
   opacity: 0;
   transition: opacity 0.2s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.procedure-section {
+  display: none;
+}
+.procedure-section.active {
+  display: block;
+  opacity: 1;
 }
 
 .about .block-title {

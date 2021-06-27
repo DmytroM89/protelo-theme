@@ -3,8 +3,6 @@ jQuery(document).ready(function($) {
     $('#page-preloader').fadeOut('slow');
     $('#page-preloader .fa-spinner').fadeOut('slow');
 
-    console.log('hello');
-
     // Slider
     $('.slider').slick({
         arrows: true,
@@ -76,11 +74,30 @@ jQuery(document).ready(function($) {
         let anchor = this.hash,
         $anchor = $(anchor);
 
-        $('html, body').stop().animate({
-            'scrollTop': $anchor.offset().top - headerHeight
-        }, 100, 'swing', function () {
-            window.location.hash = target;
-        });
+        if (anchor == '#moreDetails') {
+            $('html, body').stop().animate({
+                'scrollTop': $anchor.offset().top - headerHeight
+            }, 100, 'swing', function () {
+                window.location.hash = target;
+            });
+        } else {
+            $('.procedure-anchor').removeClass('active');
+
+            $('.procedure-section').fadeOut('fast');
+
+            $anchor.fadeIn('slow');
+
+            $(this).addClass('active');
+
+        }
+
+    });
+
+    /**
+     * Show select section
+     */
+    $('.procedure-anchor').on('click', function () {
+
     });
 })
 

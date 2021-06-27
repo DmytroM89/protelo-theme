@@ -359,9 +359,14 @@ h2 {
     align-items: center;
     justify-content: center;
     color: $white;
+    &.active {
+      &::before {
+        background-color: rgba($yellow, .6);
+      }
+    }
     &:hover {
       &::before {
-        background-color: rgba($yellow, .5);
+        background-color: rgba($yellow, .6);
       }
       .procedure-more {
         opacity: 1;
@@ -392,6 +397,14 @@ h2 {
       opacity: 0;
       transition: opacity .2s ease-in-out, transform .4s ease-in-out;
     }
+  }
+}
+
+.procedure-section {
+  display: none;
+  &.active {
+    display: block;
+    opacity: 1;
   }
 }
 
