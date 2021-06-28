@@ -74,22 +74,20 @@ jQuery(document).ready(function($) {
         let anchor = this.hash,
         $anchor = $(anchor);
 
-        if (anchor == '#moreDetails') {
-            $('html, body').stop().animate({
-                'scrollTop': $anchor.offset().top - headerHeight
-            }, 100, 'swing', function () {
-                window.location.hash = target;
-            });
-        } else {
+        if (anchor != '#moreDetails') {
             $('.procedure-anchor').removeClass('active');
-
             $('.procedure-section').fadeOut('fast');
-
             $anchor.fadeIn('slow');
-
             $(this).addClass('active');
 
+            setTimeout(function (){
+                $('html,body').animate({scrollTop: $anchor.offset().top - headerHeight}, 100, 'swing');
+            }, 300);
+        } else {
+            $('html,body').animate({scrollTop: $anchor.offset().top - headerHeight}, 100, 'swing');
         }
+
+
 
     });
 
