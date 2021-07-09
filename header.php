@@ -65,6 +65,7 @@
                             <?php
                                 $phones = get_field('phones', 'options');
                                 $email = get_field('email', 'options');
+                                $lang = get_field('language', 'options');
 
                                 $i = 1;
                                 if (is_array($phones) && !empty($phones)):
@@ -97,6 +98,14 @@
                         <button type="button" class="btn btn-warning btn-callback-xs" data-bs-toggle="modal" data-bs-target="#callbackModal">
                             <i class="fas fa-phone-volume"></i>
                         </button>
+                        <?php if ($lang == 1): ?>
+                        <div class="lang-select">
+                            <div id="currentLang"><?php echo pll_current_language();?></div>
+                            <ul class="language-chooser">
+                                <?php pll_the_languages(array('dropdown'=>0, 'display_names_as'=>'slug', 'hide_current'=>1)); ?>
+                            </ul>
+                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </header>

@@ -46,3 +46,15 @@ $xs: 767px;
     }
   }
 }
+
+@mixin position($position, $top, $right, $bottom, $left, $z-index: 0) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  @if ($z-index != 0) {
+    z-index: $z-index;
+  }
+}
+

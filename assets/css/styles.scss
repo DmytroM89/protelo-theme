@@ -42,6 +42,20 @@ $grey-80: #44494C;
   }
 }
 
+@keyframes down {
+  0% {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  50% {
+    margin-top: 10px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
 html {
   overflow: auto;
 }
@@ -77,20 +91,6 @@ video, .service {
 hr {
   background-color: $grey-10;
   opacity: 1;
-}
-
-@keyframes down {
-  0% {
-    opacity: 0;
-    margin-top: -50px;
-  }
-  50% {
-    margin-top: 10px;
-  }
-  100% {
-    opacity: 1;
-    margin-top: 0px;
-  }
 }
 
 %title {
@@ -304,11 +304,63 @@ h2 {
     }
   }
   .btn-callback-md {
+    padding: 12px 40px !important;
     @media (max-width: 1023px) {
       display: none;
     }
     @media (min-width: 1024px) {
       display: block;
+    }
+  }
+  .lang-select {
+    position: relative;
+    margin-left: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    z-index: 0;
+    &:hover {
+      .language-chooser {
+        display: block;
+      }
+    }
+    #currentLang {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background-color: $white;
+      color: $blue-dt;
+      border: 2px solid $blue-dt;
+      border-radius: 2rem;
+      z-index: 1;
+    }
+    .language-chooser {
+      @include position(absolute, 0, null, null, null, -1);
+      width: 50px;
+      padding-left: 0;
+      padding-top: 3.2rem;
+      padding-bottom: .5rem;
+      border: 2px solid $blue-dt;
+      border-radius: 2rem;
+      text-align: center;
+      background-color: $white;
+      list-style: none;
+      display: none;
+      animation: down 0.3s;
+      a {
+        margin: 0;
+        color: $blue-dt;
+        text-decoration: none;
+        transition: color .4s ease-in-out;
+        &:hover {
+          color: $blue-dt;
+        }
+      }
+      .active {
+        display: none;
+      }
     }
   }
 }
