@@ -10,34 +10,38 @@ $services = get_field('services');
 
 if (!empty($services) && is_array($services)):
     ?>
-    <section class="s-price-sub p-section">
+    <section class="s-price-sub p-section pt-4">
         <div class="container">
-            <div class="row mb-3">
-                <div class="col-3">
-                    <a class="btn back-btn" href="<?php echo get_home_url(null, 'price/'); ?>" role="button">
+            <div class="row justify-content-center mb-3">
+                <div class="col-4">
+                    <a class="btn back-btn" onClick="history.back()" role="button">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 </div>
             </div>
-            <div class="row">
-                <?php foreach ($services as $idx => $service): ?>
-                    <div class="col-12 col-md-6 col-lg-4 mb-3">
-                        <div class="service" data-bs-toggle="modal" data-bs-target="#serviceModal<?php echo $idx?>">
-                            <div class="service-image" style="background-image: url('<?php echo $service['image']; ?>')"></div>
-                            <div class="service-info">
-                                <h6 class="service-name"><?php echo $service['name']; ?></h6>
-                                <div class="service-price"><?php echo $service['price']; ?></div>
-                                <?php if (!empty($service['note'])): ?>
-                                <div class="service-note">
-                                    <i class="fas fa-info-circle"></i>
-                                    <?php echo $service['note']; ?>
-                                </div>
-                                <?php endif; ?>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <div class="row">
+                        <?php foreach ($services as $idx => $service): ?>
+                            <div class="col-12 mb-3">
+                                <div class="service" data-bs-toggle="modal" data-bs-target="#serviceModal<?php echo $idx?>">
+                                    <div class="service-image" style="background-image: url('<?php echo $service['image']; ?>')"></div>
+                                    <div class="service-info">
+                                        <h6 class="service-name"><?php echo $service['name']; ?></h6>
+                                        <div class="service-price"><?php echo $service['price']; ?></div>
+                                        <?php if (!empty($service['note'])): ?>
+                                            <div class="service-note">
+                                                <i class="fas fa-info-circle"></i>
+                                                <?php echo $service['note']; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
 
-                        </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </section>

@@ -58,7 +58,7 @@
 			<header class="header" id="top">
                 <div class="container">
                     <div class="header-inner">
-                        <a href="/" class="logo me-4">
+                        <a href="/" class="logo me-3">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/protelo_logo.jpg" alt="logo">
                         </a>
                         <div class="contacts">

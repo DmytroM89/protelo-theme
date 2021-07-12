@@ -69,6 +69,7 @@ body {
   margin: 0;
   font-size: 20px !important;
   scrollbar-width: thin;
+  overflow: scroll !important;
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -244,6 +245,19 @@ h2 {
   width: 50px;
   height: 50px;
 }
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 2rem;
+  background-color: $blue-dt;
+  color: $white;
+  &:hover {
+    color: $white;
+  }
+}
 
 .header {
   display: flex;
@@ -292,6 +306,11 @@ h2 {
     .phone {
       a:not(last-child) {
         margin-right: 1rem;
+      }
+    }
+    .phone a, .email a {
+      @include xs {
+        font-size: 16px;
       }
     }
   }
@@ -439,6 +458,7 @@ h2 {
       z-index: 1;
     }
     .procedure-name {
+      text-align: center;
       @media (max-width: 1023px) {
         font-size: 34px;
       }
@@ -813,16 +833,6 @@ h2 {
 }
 
 .s-price-sub {
-  .back-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 2rem;
-    background-color: $blue-dt;
-    color: $white;
-  }
   .service {
     display: flex;
     overflow: hidden;

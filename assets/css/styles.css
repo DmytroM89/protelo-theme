@@ -193,6 +193,7 @@ body {
   margin: 0;
   font-size: 20px !important;
   scrollbar-width: thin;
+  overflow: scroll !important;
 }
 body::-webkit-scrollbar {
   width: 5px;
@@ -383,6 +384,20 @@ h2 {
   height: 50px;
 }
 
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 2rem;
+  background-color: #004772;
+  color: #FFFFFF;
+}
+.back-btn:hover {
+  color: #FFFFFF;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -440,6 +455,11 @@ h2 {
 }
 .header .contacts .phone a:not(last-child) {
   margin-right: 1rem;
+}
+@media (max-width: 767px) {
+  .header .contacts .phone a, .header .contacts .email a {
+    font-size: 16px;
+  }
 }
 @media (max-width: 1023px) {
   .header .btn-callback-xs {
@@ -620,6 +640,13 @@ h2 {
 .s-price .procedure-link .procedure-more,
 .s-price-sub .procedure-link .procedure-more {
   z-index: 1;
+}
+.s-procedures .procedure-anchor .procedure-name, .s-price .procedure-anchor .procedure-name,
+.s-price-sub .procedure-anchor .procedure-name,
+.s-procedures .procedure-link .procedure-name,
+.s-price .procedure-link .procedure-name,
+.s-price-sub .procedure-link .procedure-name {
+  text-align: center;
 }
 @media (max-width: 1023px) {
   .s-procedures .procedure-anchor .procedure-name, .s-price .procedure-anchor .procedure-name,
@@ -1020,16 +1047,6 @@ h2 {
   animation-iteration-count: 1;
 }
 
-.s-price-sub .back-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 2rem;
-  background-color: #004772;
-  color: #FFFFFF;
-}
 .s-price-sub .service {
   display: flex;
   overflow: hidden;
