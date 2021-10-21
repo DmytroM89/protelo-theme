@@ -16,7 +16,7 @@ get_header(); ?>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-12 col-lg-10">
                 <div class="about-text">
                     <?php the_field('about_text'); ?>
                 </div>

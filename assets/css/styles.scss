@@ -21,11 +21,11 @@ $yellow-25: #FEEEBF;
 
 
 // Custom container width
-/*@media (min-width: 1400px) {
+@media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1110px;
   }
-}*/
+}
 
 //============= Common =============//
 body {
@@ -33,10 +33,7 @@ body {
   font-weight: 400;
   background-color: $white !important;
   color: $black;
-  margin: 0;
-  font-size: 20px !important;
   scrollbar-width: thin;
-  position: relative;
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -45,6 +42,12 @@ body {
   }
   &::-webkit-scrollbar-thumb {
     background: $black-75;
+  }
+  @include xs {
+    font-size: 24px !important;
+  }
+  @media (min-width: $md) {
+    font-size: 20px !important;
   }
 }
 
@@ -65,11 +68,11 @@ h1 {
     margin-bottom: 35px;
   }
   @include md {
-    font-size: 50px;
+    font-size: 60px;
     margin-bottom: 25px;
   }
   @include xs {
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 20px;
   }
 }
@@ -79,32 +82,44 @@ h2 {
     margin-bottom: 35px;
   }
   @include md {
-    font-size: 35px;
+    font-size: 50px;
     margin-bottom: 25px;
   }
   @include xs {
-    font-size: 28px;
+    font-size: 44px;
     margin-bottom: 20px;
   }
 }
 h3 {
+  @media (max-width: $md-top) {
+    font-size: 34px;
+  }
   @include lg {
     font-size: 48px;
   }
 }
 h4 {
+  @media (max-width: $md-top) {
+    font-size: 30px;
+  }
   @include lg {
     font-size: 36px;
   }
 }
 h5 {
+  @media (max-width: $md-top) {
+    font-size: 26px;
+  }
   @include lg {
     font-size: 28px;
   }
 }
 h6 {
-  @include lg {
+  @media (max-width: $md-top) {
     font-size: 24px;
+  }
+  @include lg {
+    font-size: 26px;
   }
 }
 .fs-18 {
@@ -209,9 +224,14 @@ section {
 }
 .section-title {
   text-align: center;
-  margin-bottom: 50px;
   @include modifier(left) {
     text-align: left;
+  }
+  @include xs {
+    margin-bottom: 40px;
+  }
+  @media (min-width: $md) {
+    margin-bottom: 50px;
   }
 }
 .subtitle {
@@ -276,7 +296,7 @@ section {
   @media (max-width: $md-top) {
     padding: 8px 50px;
   }
- @include lg {
+  @include lg {
     padding: 8px 65px;
   }
 }
@@ -468,22 +488,51 @@ section {
 //============= Section Main =============//
 .s-main {
   margin: 0;
-  padding-top: 80px;
-  height: calc(100vh - 146px);
   position: relative;
-  .s-main-title {
-    p {
-      font-size: 28px;
-      margin-bottom: 0;
+  @include xs {
+    margin-bottom: 100px;
+    .s-main-title {
+      text-align: center;
+      margin-top: 2px;
+      margin-bottom: 2rem;
+      p {
+        font-size: 24px;
+      }
     }
-    h1 {
-      padding-right: 30px;
+  }
+  @media (min-width: $md) {
+    .s-main-title {
+      p {
+        font-size: 28px;
+        margin-bottom: 0;
+      }
     }
-    @include md {
+  }
+  @include md {
+    height: calc(100vh - 116px);
+    padding-top: 50px;
+    .s-main-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+  @media (min-width: $lg) and (max-width: 1439px) {
+    padding-top: 30px;
+    .s-main-title {
       margin-top: 100px;
+      h1 {
+        padding-right: 45px;
+      }
     }
-    @media (min-width: $md-top) {
+  }
+  @media (min-width: 1440px) {
+    height: calc(100vh - 146px);
+    padding-top: 80px;
+    .s-main-title {
       margin-top: 150px;
+      h1 {
+        padding-right: 30px;
+      }
     }
   }
   .s-main-more {
@@ -491,9 +540,20 @@ section {
     font-size: 18px;
     text-align: right;
     position: absolute;
-    bottom: 20%;
-    left: 45%;
+
     transform: rotate(-90deg);
+    @include xs {
+      left: 77%;
+      bottom: 60%;
+    }
+    @media (min-width: $md) and (max-width: 1023px) {
+      bottom: 10%;
+      left: 85%;
+    }
+    @media (min-width: 1024px) {
+      bottom: 20%;
+      left: 45%;
+    }
     .arrow {
       display: block;
       width: 100%;
@@ -519,6 +579,12 @@ section {
         top: 5px;
         transform: rotate(45deg);
       }
+    }
+  }
+  .s-main-img {
+    @media (min-width: $md) and (max-width: 1023px) {
+      display: flex;
+      justify-content: center;
     }
   }
 }
@@ -567,8 +633,16 @@ section {
 //============= Section About =============//
 .s-about {
   .about-text {
-    font-size: 26px;
     text-align: center;
+    p:last-child {
+      margin-bottom: 0;
+    }
+    @include xs {
+      font-size: 24px;
+    }
+    @media (min-width: $md) {
+      font-size: 26px;
+    }
   }
 }
 //============= End Section About =============//
@@ -579,11 +653,17 @@ section {
   .signup-container {
     border-radius: 40px;
     background-color: $yellow;
-    padding: 60px 45px;
     text-align: center;
+    @include xs {
+      padding: 60px 30px;
+    }
+    @media (min-width: $md) {
+      padding: 60px 45px;
+    }
     p {
       font-size: 24px;
       margin-bottom: 2rem;
+      line-height: 1.2;
       &.slog, &.text-under {
         font-size: 20px;
         margin-top: 1.5rem;
@@ -779,6 +859,12 @@ section {
 
 //============= Pages Services =============//
 .about {
+  @include xs {
+    margin-top: 0;
+  }
+  @media (min-width: $md) and (max-width: 1439px) {
+    margin-top: 2rem;
+  }
   img {
     border-radius: 40px;
   }
@@ -849,7 +935,12 @@ section {
 
 .advantages, .s-advantages {
   .subtitle {
-    margin-bottom: 2rem;
+    @include xs {
+      margin-bottom: 3rem;
+    }
+    @media (min-width: $md) {
+      margin-bottom: 2rem;
+    }
   }
   .advantages-item {
     display: flex;
@@ -891,20 +982,16 @@ section {
   .subtitle {
     margin-bottom: 2rem;
   }
-  @include element(item) {
+  .how-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     p {
       margin-top: 1.5rem;
       margin-bottom: 0;
-    }
-  }
-  @include xs {
-    img {
-      width: 50%;
-      display: block;
-      margin: 0 auto;
+      @include xs {
+        font-size: 22px;
+      }
     }
   }
 }
@@ -1066,7 +1153,7 @@ section {
   color: $white;
   opacity: 0;
   transition: opacity .4s ease-in-out, background-color .15s ease-in-out;
-  z-index: 9999;
+  z-index: 1999;
   &:hover {
     color: $white;
     background-color: lighten($yellow, 20);
@@ -1094,6 +1181,9 @@ section {
       padding-left: 0;
       display: flex;
       justify-content: space-between;
+      @media (max-width: $md-top) {
+        flex-wrap: wrap;
+      }
       li {
         list-style: none;
         a {
@@ -1110,6 +1200,14 @@ section {
         }
         & > a {
           font-weight: bold;
+        }
+        @include xs {
+          flex: 0 0 44%;
+          margin: 0 10px 10px;
+        }
+        @include md {
+          flex: 0 0 33%;
+          margin-bottom: .5rem;
         }
       }
       .sub-menu {
@@ -1409,7 +1507,12 @@ section {
     border: 4px solid $yellow;
   }
   .modal-body {
-    padding: 50px 70px;
+    @include xs {
+      padding: 50px;
+    }
+    @media (min-width: $md) {
+      padding: 50px 70px;
+    }
   }
   .form-content {
     .form-title {

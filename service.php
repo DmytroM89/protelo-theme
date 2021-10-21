@@ -32,7 +32,7 @@ if (!empty($about['title'])):
                 <?php if (!empty($about['subtitle'])): ?>
                     <p class="subtitle fst-italic"><?php echo $about['subtitle']; ?></p>
                 <?php endif; ?>
-                <p class="mb-0 mb-lg-4"><?php echo $about['description']; ?></p>
+                <p class="mb-lg-4 fs-24"><?php echo $about['description']; ?></p>
             </div>
             <div class="col-12 col-md-6">
                 <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image">
@@ -57,7 +57,7 @@ if (!empty($whom['title'])):
 <section class="whom bg-rect bg-rect--left"">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8 text-center">
+            <div class="col-12 col-lg-8 text-center">
                 <h3 class="section-title <?php if (!empty($whom['subtitle'])) : ?>mb-3<?php endif; ?>">
                     <?php echo $whom['title']; ?>
                 </h3>
@@ -67,7 +67,7 @@ if (!empty($whom['title'])):
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-12 col-lg-10">
                 <img src="<?php echo $whom['image']; ?>" class="img-fluid" alt="slider img">
             </div>
         </div>
@@ -113,13 +113,13 @@ if (!empty($beforeAfter['title'])):
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="section-title"><?php echo $beforeAfter['title']; ?></h2>
+                <h3 class="section-title"><?php echo $beforeAfter['title']; ?></h3>
             </div>
         </div>
         <?php if (!empty($beforeAfter['theses'])): ?>
             <div class="row justify-content-center">
-                <?php foreach ($beforeAfter['theses'] as $these): ?>
-                    <div class="col-12 col-md-3 mb-5 mb-lg-0">
+                <?php foreach ($beforeAfter['theses'] as $key=>$these): ?>
+                    <div class="col-12 col-md-3 <?php if (count($beforeAfter['theses'])-1 != $key): ?>mb-5 mb-lg-0<?php endif; ?>">
                         <div class="these">
                             <div class="these-icon"><?php echo $these['icon'];?></div>
                             <p class="these-text mb-0"><?php echo $these['text'];?></p>
@@ -131,7 +131,7 @@ if (!empty($beforeAfter['title'])):
 
         <?php if (!empty($beforeAfter['ba_slider'])): ?>
             <div class="row justify-content-center">
-                <div class="col-10">
+                <div class="col-12 col-lg-10">
                     <div class="slider" id="mSlider">
                         <?php foreach ($beforeAfter['ba_slider'] as $baItem): ?>
                             <div class="slider-item">
@@ -168,7 +168,7 @@ if (!empty($advantages['items']) && is_array($advantages['items'])):
         </div>
         <div class="row justify-content-center">
             <?php foreach ($advantages['items'] as $item): ?>
-                <div class="col-12 col-md-3 mb-5 mb-md-0">
+                <div class="col-12 col-md-4 col-xl-3 mb-5 mb-md-0">
                     <div class="advantages-item">
                         <div class="icon">
                             <?php echo $item['icon']; ?>
@@ -222,8 +222,8 @@ if (!empty($how['title'])):
 
         <?php if (!empty($how['items']) && is_array($how['items'])): ?>
             <div class="row">
-                <?php foreach ($how['items'] as $item): ?>
-                    <div class="col-12 col-md-6 col-lg-3">
+                <?php foreach ($how['items'] as $key=>$item): ?>
+                    <div class="col-12 col-md-6 col-lg-3 <?php if (count($how['items'])-1 != $key): ?>mb-4 mb-lg-0<?php endif; ?>">
                         <div class="how-item">
                             <img src="<?php echo $item['image']; ?>" class="img-fluid" alt="how img">
                             <p><?php echo $item['description']; ?></p>
@@ -287,7 +287,7 @@ if (!empty($contraindications['title'])):
         </div>
         <?php if (!empty($contraindications['appointment'])): ?>
             <div class="row d-flex justify-content-center mt-3 mt-md-5">
-                <div class="col-12 col-md-6 text-center">
+                <div class="col-12 col-md-8 col-lg-6 text-center">
                     <button type="button" class="btn btn-warning  btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal">
                         <?php echo $contraindications['appointment']; ?>
                     </button>

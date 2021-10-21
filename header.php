@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta http-equiv="Cache-Control" content="public">
         <meta http-equiv="Cache-Control" content="no-store">
         <meta http-equiv="Cache-Control" content="max-age=34700">
         <meta name="facebook-domain-verification" content="iv576zw63v9nowmif6tkbwv000oogq" />
 
-        <meta name="format-detection" content="telephone=no">
-
-		<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title></title>
+		<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title>
 		
         <?php wp_enqueue_script("jquery"); ?>
 		<?php wp_head(); ?>

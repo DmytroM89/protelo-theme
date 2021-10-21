@@ -8,7 +8,7 @@ get_header(); ?>
     <section class="s-main">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-lg-7">
                     <div class="s-main-title">
                         <p><?php the_field('main_subtitle'); ?></p>
                         <h1><?php the_field('main_title'); ?></h1>
@@ -18,7 +18,7 @@ get_header(); ?>
                         <div class="arrow"></div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-12 col-lg-5">
                     <div class="s-main-img">
                         <img src="<?php the_field('main_img'); ?>" alt="main_img">
                     </div>
@@ -42,7 +42,7 @@ get_header(); ?>
             </div>
             <div class="row">
                 <?php foreach ($services as $service): ?>
-                    <div class="col-12 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-5 mb-xl-0">
                         <div class="service">
                             <div class="service-img">
                                 <img src="<?php echo $service['image']; ?>" alt="">
@@ -80,7 +80,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-10">
+                <div class="col-12 col-lg-10">
                     <div class="about-text">
                         <?php the_field('about_text'); ?>
                     </div>
@@ -140,9 +140,9 @@ get_header(); ?>
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="section-title <?php if (!empty(get_field('advantage_title'))): ?>mb-3<?php endif; ?>">
+                    <h2 class="section-title <?php if (!empty(get_field('advantage_title'))): ?>mb-3<?php endif; ?>">
                         <?php the_field('advantage_title'); ?>
-                    </h3>
+                    </h2>
                     <?php if (!empty(get_field('advantage_subtitle'))): ?>
                         <p class="subtitle text-center"><?php the_field('advantage_subtitle'); ?></p>
                     <?php endif; ?>
@@ -192,8 +192,8 @@ get_header(); ?>
             </div>
             <?php if (!empty($theses)): ?>
             <div class="row justify-content-center">
-                <?php foreach ($theses as $these): ?>
-                <div class="col-12 col-md-3 mb-5 mb-lg-0">
+                <?php foreach ($theses as $key=>$these): ?>
+                <div class="col-12 col-md-3 <?php if (count($theses)-1 != $key): ?>mb-5 mb-lg-0<?php endif; ?>">
                     <div class="these">
                         <div class="these-icon"><?php echo $these['icon'];?></div>
                         <p class="these-text mb-0"><?php echo $these['text'];?></p>
@@ -205,7 +205,7 @@ get_header(); ?>
 
             <?php if (!empty($baSlider)): ?>
             <div class="row justify-content-center">
-                <div class="col-10">
+                <div class="col-12 col-lg-10">
                     <div class="slider" id="mSlider">
                         <?php foreach ($baSlider as $baItem): ?>
                             <div class="slider-item">
