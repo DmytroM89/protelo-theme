@@ -158,6 +158,14 @@
             <a href="javascript:void(0);" class="scroll-up">
                 <i class="fas fa-chevron-up"></i>
             </a>
+
+            <!-- Call Back Button -->
+            <div type="button" class="callback-bt" data-bs-toggle="modal" data-bs-target="#callbackModal">
+                <div class="text-call">
+                    <i class="fa fa-phone"></i>
+                    <span><?php pll_e('call_back');?></span>
+                </div>
+            </div>
         </div>
 
         <footer class="footer">

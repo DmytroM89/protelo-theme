@@ -172,6 +172,78 @@ img {
     transform: translateY(0px);
   }
 }
+@keyframes hoverWave {
+  0% {
+    box-shadow: 0 8px 10px rgba(255, 186, 0, 0.3), 0 0 0 0 rgba(255, 186, 0, 0.2), 0 0 0 0 rgba(255, 186, 0, 0.2);
+  }
+  40% {
+    box-shadow: 0 8px 10px rgba(255, 186, 0, 0.3), 0 0 0 15px rgba(255, 186, 0, 0.2), 0 0 0 0 rgba(255, 186, 0, 0.2);
+  }
+  80% {
+    box-shadow: 0 8px 10px rgba(255, 186, 0, 0.3), 0 0 0 30px rgba(255, 186, 0, 0), 0 0 0 26.7px rgba(255, 186, 0, 0.067);
+  }
+  100% {
+    box-shadow: 0 8px 10px rgba(255, 186, 0, 0.3), 0 0 0 30px rgba(255, 186, 0, 0), 0 0 0 40px rgba(255, 186, 0, 0);
+  }
+}
+/* animations icon */
+@keyframes shake {
+  0% {
+    transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+  10% {
+    transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -webkit-transform: rotateZ(-30deg);
+  }
+  20% {
+    transform: rotateZ(15deg);
+    -ms-transform: rotateZ(15deg);
+    -webkit-transform: rotateZ(15deg);
+  }
+  30% {
+    transform: rotateZ(-10deg);
+    -ms-transform: rotateZ(-10deg);
+    -webkit-transform: rotateZ(-10deg);
+  }
+  40% {
+    transform: rotateZ(7.5deg);
+    -ms-transform: rotateZ(7.5deg);
+    -webkit-transform: rotateZ(7.5deg);
+  }
+  50% {
+    transform: rotateZ(-6deg);
+    -ms-transform: rotateZ(-6deg);
+    -webkit-transform: rotateZ(-6deg);
+  }
+  60% {
+    transform: rotateZ(5deg);
+    -ms-transform: rotateZ(5deg);
+    -webkit-transform: rotateZ(5deg);
+  }
+  70% {
+    transform: rotateZ(-4.28571deg);
+    -ms-transform: rotateZ(-4.28571deg);
+    -webkit-transform: rotateZ(-4.28571deg);
+  }
+  80% {
+    transform: rotateZ(3.75deg);
+    -ms-transform: rotateZ(3.75deg);
+    -webkit-transform: rotateZ(3.75deg);
+  }
+  90% {
+    transform: rotateZ(-3.33333deg);
+    -ms-transform: rotateZ(-3.33333deg);
+    -webkit-transform: rotateZ(-3.33333deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+}
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1110px;
@@ -1736,3 +1808,89 @@ section {
 .post-card .card-title {
   margin-bottom: 1.5rem;
 }
+
+/*кнопка звонка*/
+.callback-bt {
+  background: #FCBA00;
+  border: 2px solid #FCBA00;
+  border-radius: 50%;
+  box-shadow: 0 8px 10px rgba(252, 186, 0, 0.3);
+  cursor: pointer;
+  height: 68px;
+  width: 68px;
+  text-align: center;
+  position: fixed;
+  bottom: 12%;
+  z-index: 999;
+  transition: 0.3s;
+  animation: hoverWave linear 1s infinite;
+}
+@media (max-width: 767px) {
+  .callback-bt {
+    right: 6%;
+  }
+}
+@media (min-width: 768px) {
+  .callback-bt {
+    right: 3%;
+  }
+}
+
+.callback-bt .text-call {
+  height: 68px;
+  width: 68px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.callback-bt .text-call span {
+  text-align: center;
+  color: #505457;
+  opacity: 0;
+  font-size: 0;
+  position: absolute;
+  right: 4px;
+  top: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: opacity 0.3s linear;
+}
+
+.callback-bt .text-call:hover span {
+  opacity: 1;
+  font-size: 10px;
+}
+
+.callback-bt:hover i {
+  display: none;
+}
+
+.callback-bt:hover {
+  z-index: 1;
+  background: #FFFFFF;
+  color: transparent;
+  transition: 0.3s;
+}
+
+.callback-bt:hover i {
+  color: #FCBA00;
+  font-size: 40px;
+  transition: 0.3s;
+}
+
+.callback-bt i {
+  color: #FFFFFF;
+  font-size: 34px;
+  transition: 0.3s;
+  line-height: 66px;
+  transition: 0.5s ease-in-out;
+}
+
+.callback-bt i {
+  animation: 1200ms ease 0s normal none 1 running shake;
+  animation-iteration-count: infinite;
+}
+
+/* конец кнопки звонка */
