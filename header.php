@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<meta http-equiv="Cache-Control" content="public">
-		<meta http-equiv="Cache-Control" content="no-store">
-		<meta http-equiv="Cache-Control" content="max-age=34700">
+        <meta http-equiv="Cache-Control" content="public">
+        <meta http-equiv="Cache-Control" content="no-store">
+        <meta http-equiv="Cache-Control" content="max-age=34700">
+        <meta name="facebook-domain-verification" content="iv576zw63v9nowmif6tkbwv000oogq" />
 
-		<meta name="format-detection" content="telephone=no">
-
-		<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title></title>
+		<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title>
 		
         <?php wp_enqueue_script("jquery"); ?>
 		<?php wp_head(); ?>
 
-        <script type="text/javascript">
-            let postId = <?php echo get_the_ID(); ?>;
-        </script>
 		<style type="text/css">
             #page-preloader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -31,13 +31,17 @@
                 background: #000000;
                 z-index: 100500;
             }
-            #page-preloader .fa-spinner {
+            #page-preloader.hide {
+                opacity: 0;
+                transition: opacity .6s ease-in-out;
+            }
+            #page-preloader img {
+                width: 150px;
+            }
+            #page-preloader .fa-circle-notch {
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                margin: -25px 0 0 -25px;
+                top: 55%;
                 color: #FFF;
-                text-align: center;
                 animation: spin 2s linear infinite;
             }
 
@@ -46,11 +50,27 @@
                 100% { transform: rotate(360deg); }
             }
         </style>
+
+        <script type="text/javascript">
+            let postId = <?php if (get_the_ID() > 0) {echo get_the_ID();} else {echo 0;}  ?>;
+
+            /**
+             * Loader
+             */
+            window.onload = function() {
+                var loader = document.querySelector('#page-preloader');
+                loader.classList.add('hide');
+                setInterval(function () {
+                    loader.classList.add('d-none');
+                }, 500);
+            };
+        </script>
 	</head>
 	<body ontouchstart="">
 
         <div id="page-preloader">
-            <i class="fas fa-spinner fa-3x"></i>
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/protelo_logo.jpg" alt="protelo_logo">
+            <i class="fas fa-circle-notch fa-2x"></i>
         </div>
 
 		<div class="wrapper">
@@ -58,54 +78,26 @@
 			<header class="header" id="top">
                 <div class="container">
                     <div class="header-inner">
-                        <a href="/" class="logo me-3">
+                        <a href="<?php echo get_home_url(); ?>" class="logo">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/protelo_logo.jpg" alt="logo">
                         </a>
-                        <div class="contacts">
-                            <?php
-                                $phones = get_field('phones', 'options');
-                                $email = get_field('email', 'options');
-                                $lang = get_field('language', 'options');
 
-                                $i = 1;
-                                if (is_array($phones) && !empty($phones)):
-                            ?>
-                                <div class="phone">
-                                    <i class="fas fa-phone fa-flip-horizontal me-2"></i>
-                                    <?php foreach ($phones as $phone) :?>
-                                        <?php if ($i < count($phones)) : ?>
-                                            <a href="tel:<?php echo $phone['phone'] ?>">
-                                                <?php echo $phone['phone'] ?>,
-                                            </a>
-                                        <?php else: ?>
-                                            <a href="tel:<?php echo $phone['phone'] ?>">
-                                                <?php echo $phone['phone'] ?>
-                                            </a>
-                                        <?php endif; $i++;?>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
+                        <?php
+                            if (pll_current_language() == 'ru') {
+                                wp_nav_menu("menu=ru");
+                            }
+                            if (pll_current_language() == 'ua') {
+                                wp_nav_menu("menu=ua");
+                            }
+                        ?>
 
-                            <?php if ($email): ?>
-                            <div class="email">
-                                <i class="fas fa-envelope me-2"></i>
-                                <a href="mail:<?php echo $email ?>"><?php echo $email ?></a>
-                            </div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="spacer"></div>
-                        <button type="button" class="btn btn-warning btn-lg btn-callback-md" data-bs-toggle="modal" data-bs-target="#callbackModal">Обратный звонок</button>
-                        <button type="button" class="btn btn-warning btn-callback-xs" data-bs-toggle="modal" data-bs-target="#callbackModal">
-                            <i class="fas fa-phone-volume"></i>
-                        </button>
-                        <?php if ($lang == 1): ?>
-                        <div class="lang-select">
-                            <div id="currentLang"><?php echo pll_current_language();?></div>
-                            <ul class="language-chooser">
-                                <?php pll_the_languages(array('dropdown'=>0, 'display_names_as'=>'slug', 'hide_current'=>1)); ?>
-                            </ul>
-                        </div>
-                        <?php endif; ?>
+                        <ul class="language">
+                            <?php pll_the_languages(array('dropdown'=>0, 'display_names_as'=>'slug')); ?>
+                        </ul>
+
+                        <a href="#" class="menu-btn">
+                            <i class="fas fa-bars"></i>
+                        </a>
                     </div>
                 </div>
             </header>

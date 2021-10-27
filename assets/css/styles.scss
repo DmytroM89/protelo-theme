@@ -1,101 +1,82 @@
 @import "_reset";
 @import "_fonts";
 @import "_mixin";
+@import "_keyframes";
 
 // Colors
 $white: #FFFFFF;
+
 $black: #151B1F;
-$blue-dt: #004772;
-$orange: #f68e13;
-$green: #43B02A;
-$red: #F44336;
-$yellow: #ffc107;
-$blue: #3699F4;
-$purple: #8787FF;
-$grey-5: #F3F4F4;
-$grey-10: #E8E8E9;
-$grey-20: #D0D1D2;
-$grey-40: #A1A4A5;
-$grey-60: #737679;
-$grey-80: #44494C;
+$black-75: #505457;
+$black-50: #8A8D8F;
+$black-25: #C5C6C7;
+$black-10: #E8E8E9;
+$black-5: #F6F6F6;
+
+$yellow: #FCBA00;
+$yellow-dt: #EDAF00;
+$yellow-75: #FDCC40;
+$yellow-50: #FEDD80;
+$yellow-25: #FEEEBF;
 
 
 // Custom container width
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
+    max-width: 1110px;
   }
 }
 
-@keyframes flip-down {
-  0% {
-    transform: perspective(2500px) rotateX(100deg);
-  }
-  50% {
-    transform: perspective(2500px) rotateX(-30deg);
-  }
-  75% {
-    transform: perspective(2500px) rotateX(15deg);
-  }
-  100% {
-    transform: perspective(2500px) rotateX(0);
-  }
-}
-
-@keyframes down {
-  0% {
-    opacity: 0;
-    margin-top: -50px;
-  }
-  50% {
-    margin-top: 10px;
-  }
-  100% {
-    opacity: 1;
-    margin-top: 0px;
-  }
-}
-
-html {
-  overflow: auto;
-}
-
+//============= Common =============//
 body {
-  height: 100%;
   font-family: 'PTRootUI';
   font-weight: 400;
-  background-color: $white;
+  background-color: $white !important;
   color: $black;
-  margin: 0;
-  font-size: 20px !important;
   scrollbar-width: thin;
-  overflow: scroll !important;
   &::-webkit-scrollbar {
     width: 5px;
   }
   &::-webkit-scrollbar-track {
-    background: $grey-10;
+    background: $black-10;
   }
   &::-webkit-scrollbar-thumb {
-    background: $blue-dt;
+    background: $black-75;
+  }
+  @include xs {
+    font-size: 24px !important;
+  }
+  @media (min-width: $md) {
+    font-size: 20px !important;
   }
 }
 
-img {
-  width: 100%;
+%icon {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
-img, .image-compare-viewer,
-video, .service {
-  border-radius: 10px;
-}
-
-hr {
-  background-color: $grey-10;
-  opacity: 1;
-}
-
-%title {
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
   line-height: 1.1;
+}
+h1 {
+  @include lg {
+    font-size: 80px;
+    margin-bottom: 35px;
+  }
+  @include md {
+    font-size: 60px;
+    margin-bottom: 25px;
+  }
+  @include xs {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+}
+h2 {
   @include lg {
     font-size: 60px;
     margin-bottom: 35px;
@@ -105,100 +86,192 @@ hr {
     margin-bottom: 25px;
   }
   @include xs {
-    font-size: 40px;
+    font-size: 44px;
     margin-bottom: 20px;
   }
 }
-
-%icon {
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
-}
-
-h1 {
-  @extend %title;
-}
-h2 {
-  line-height: 1.1;
+h3 {
+  @media (max-width: $md-top) {
+    font-size: 34px;
+  }
   @include lg {
-    font-size: 45px;
-    margin-bottom: 35px;
+    font-size: 48px;
   }
-  @include md {
-    font-size: 35px;
-    margin-bottom: 25px;
+}
+h4 {
+  @media (max-width: $md-top) {
+    font-size: 30px;
   }
-  @include xs {
+  @include lg {
+    font-size: 36px;
+  }
+}
+h5 {
+  @media (max-width: $md-top) {
+    font-size: 26px;
+  }
+  @include lg {
     font-size: 28px;
-    margin-bottom: 20px;
   }
+}
+h6 {
+  @media (max-width: $md-top) {
+    font-size: 24px;
+  }
+  @include lg {
+    font-size: 26px;
+  }
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fs-24 {
+  font-size: 24px;
 }
 
-.section-title {
+.form-control {
+  border: 2px solid $yellow;
+  border-radius: 2rem;
+  &:focus {
+    border-color: $yellow;
+  }
+  &::placeholder {
+    color: $black-25;
+  }
+}
+.wpcf7 form .wpcf7-response-output {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+.wpcf7-not-valid-tip {
+  line-height: 1.1;
   text-align: center;
-  text-transform: uppercase;
+  margin-top: .25rem;
+  font-size: 16px;
+  font-weight: 500;
+  color: $black;
 }
-.block-title {
-  @extend .section-title;
-  @include xs {
-    margin-bottom: 2rem;
+.slider {
+  .image-compare-viewer {
+    border-radius: 40px;
+    //height: 66vh;
   }
-  @media (min-width: $md) {
-    margin-bottom: 3rem;
+  .slick-prev, .slick-next {
+    height: 40px;
+    width: 40px;
+    @media (max-width: $md-top) {
+      bottom: -82px;
+      top: inherit;
+    }
+    &::before {
+      color: $yellow;
+      font-size: 40px;
+    }
+  }
+  .slick-prev {
+    left: -50px;
+    @media (max-width: $md-top) {
+      left: 0;
+    }
+  }
+  .slick-next {
+    right: -50px;
+    @media (max-width: $md-top) {
+      right: 0;
+    }
+  }
+  .slick-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: -50px;
+    li {
+      margin: 0 15px;
+      button::before {
+        font-size: 20px;
+        color: $black-10;
+        opacity: 1;
+      }
+      &.slick-active button::before {
+        color: $yellow;
+      }
+    }
   }
 }
+a {
+  color: $black-75;
+  &:hover {
+    color: $black;
+  }
+}
+//============= End Common =============//
 
-.service-title {
-  @extend %title;
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  color: $blue-dt;
+//============= Section =============//
+section {
+  margin: 100px 0;
 }
-.service-title-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.bg-rect {
+  margin: 0 !important;
+  padding: 80px 0;
   position: relative;
-  width: 50%;
-  margin: 0 auto;
-  &::before, &::after {
-    position: absolute;
+  &::after {
     content: '';
     display: block;
-    width: 45%;
-    height: 2px;
-    background-color: $yellow;
+    width: 100%;
+    height: 100%;
+    background-color: $black-5;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    @media (min-width: 1376px) {
+      border-radius: 40px;
+    }
   }
-  &::before {
-    left: 0;
+  @include modifier(right) {
+    &::after {
+      @media (min-width: 1376px) and (max-width: 1919px) {
+        left: 5%;
+      }
+      @media (min-width: 1920px) {
+        left: 15%;
+      }
+    }
   }
-  &::after {
-    right: 0;
-  }
-  i {
-    font-size: 14px;
-    transform: rotate(45deg);
-    color: $yellow;
-
+  @include modifier(left) {
+    &::after {
+      @media (min-width: 1376px) and (max-width: 1919px) {
+        right: 5%;
+      }
+      @media (min-width: 1920px) {
+        right: 15%;
+      }
+    }
   }
 }
-
+.section-title {
+  text-align: center;
+  @include modifier(left) {
+    text-align: left;
+  }
+  @include xs {
+    margin-bottom: 40px;
+  }
+  @media (min-width: $md) {
+    margin-bottom: 50px;
+  }
+}
 .subtitle {
-  margin-bottom: 2rem;
+  font-weight: 500;
+  font-size: 24px;
+  color: $black-75;
   line-height: 1.2;
-  @include lg {
-    font-size: 22px;
-  }
 }
+//============= End Section =============//
 
-.spacer {
-  flex: 1 1 auto;
-}
-
-.p-section {
+//============= Block =============//
+.p-block {
   @include xs {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -208,38 +281,52 @@ h2 {
     padding-bottom: 80px;
   }
 }
-.p-block {
-  @include xs {
-    padding-top: 50px;
-    padding-bottom: 15px;
-  }
-  @media (min-width: $md) {
-    padding-top: 80px;
-    padding-bottom: 40px;
-  }
-}
+//============= End Block =============//
 
-.bg-grey {
-  background-color: $grey-5;
-}
-
-// Buttons
+//============= Buttons =============//
 .btn {
-  border-radius: 100px;
-  text-transform: uppercase;
-  font-size: 16px;
+  border-radius: 2rem;
+  font-size: 20px;
   font-weight: 500;
 }
-.btn-warning {
+.btn-default {
   color: $white;
-  &:hover, &:active, &:focus {
-    color: $white;
-    box-shadow: none;
-    outline: none;
+  background-color: $black;
+  border-color: $black;
+  &:hover {
+    color: $yellow;
+  }
+}
+.btn-warning {
+  color: $black;
+  background-color: $yellow;
+  border-color: $yellow;
+  &:hover {
+    color: $black;
+    background-color: $yellow-dt;
+    border-color: $yellow-dt;
+  }
+}
+.btn-warning:active:focus {
+  box-shadow: none !important;
+}
+.btn-outline-warning {
+  color: $black;
+  border-color: $yellow;
+  border-width: 3px;
+  &:hover {
+    color: $black;
+    background-color: $yellow !important;
+    border-color: $yellow;
   }
 }
 .btn-lg {
-  padding: 15px 40px;
+  @media (max-width: $md-top) {
+    padding: 8px 50px;
+  }
+  @include lg {
+    padding: 8px 65px;
+  }
 }
 .btn-callback-xs {
   width: 50px;
@@ -252,247 +339,600 @@ h2 {
   width: 40px;
   height: 40px;
   border-radius: 2rem;
-  background-color: $blue-dt;
-  color: $white;
+  border: 2px solid $black-75;
+  background-color: $white;
+  color: $black-75;
   &:hover {
     color: $white;
+    background-color: $black;
+    border-color: $black;
   }
 }
+//============= End Buttons =============//
 
+//============= Header =============//
 .header {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 80px;
   left: 0;
+  padding-bottom: 1rem;
   position: relative;
   top: 0;
   z-index: 99;
-  box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
   background: $white;
   &.-sticky {
     position: fixed;
-    z-index: 9999;
+    z-index: 1040;
+    width: 100vw;
     animation: down .6s;
+  }
+  @media (max-width: $md-top) {
+    padding-top: 20px;
+  }
+  @include lg {
+    padding-top: 30px;
   }
   @include element(inner) {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   .logo {
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 40px;
+    border-radius: 50%;
     @media (max-width: 1023px) {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
     }
     @media (min-width: 1024px) {
-      width: 70px;
-      height: 70px;
+      width: 100px;
+      height: 100px;
     }
   }
-  .contacts {
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    li {
+      list-style: none;
+    }
+  }
+  .menu {
     display: flex;
-    @include xs {
-      flex-direction: column;
+    font-size: 18px;
+    @media (max-width: $md-top) {
+      display: none;
     }
-    @media (min-width: $md) {
-      flex-direction: row;
-      align-items: center;
-    }
-    .phone {
-      a:not(last-child) {
-        margin-right: 1rem;
+    .menu-item {
+      margin: 0 1rem;
+      &:hover {
+        cursor: pointer;
+      }
+      a {
+        color: $black;
+        transition: all .4s ease-in;
+        &:hover {
+          font-weight: bold;
+        }
       }
     }
-    .phone a, .email a {
-      @include xs {
+    .menu-item-has-children {
+      &::after {
+        @extend %icon;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f107";
         font-size: 16px;
+        margin-left: .25rem;
+      }
+      &:hover {
+        .sub-menu {
+          display: block;
+        }
+      }
+    }
+    .current-menu-item > a,
+    .current-menu-ancestor > a {
+      font-weight: bold;
+    }
+    .sub-menu {
+      animation-name: down;
+      animation-delay: .25s;
+      animation-duration: .4s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+      position: absolute;
+      background-color: $white;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+      border-top: 2px solid $black;
+      border-bottom: 2px solid $black;
+      padding: 16px;
+      display: none;
+      .menu-item {
+        margin: 0;
+        &:not(:last-child) {
+          margin-bottom: .5rem;
+        }
+      }
+      .current-menu-item > a {
+        font-weight: bold;
       }
     }
   }
-  .btn-callback-xs {
-    @media (max-width: 1023px) {
-      display: block;
+  .language {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    transform: rotate(-90deg);
+    @media (max-width: $md-top) {
+      display: none;
     }
-    @media (min-width: 1024px) {
+    li {
+      text-transform: uppercase;
+      list-style: none;
+      a {
+        color: $black-50;
+        font-weight: bold;
+        &:hover {
+          color: $black;
+        }
+      }
+      &:first-child {
+        display: flex;
+        position: relative;
+        margin-right: 6px;
+        padding-right: 8px;
+        &::after {
+          content: '';
+          display: block;
+          width: 3px;
+          height: 20px;
+          background-color: $black;
+          position: absolute;
+          top: 7px;
+          right: 0;
+        }
+      }
+      &.current-lang a {
+        color: $black;
+      }
+    }
+  }
+  .menu-btn {
+    i {
+      font-size: 30px;
+    }
+    @include lg {
       display: none;
     }
   }
-  .btn-callback-md {
-    padding: 12px 40px !important;
-    @media (max-width: 1023px) {
-      display: none;
-    }
-    @media (min-width: 1024px) {
-      display: block;
+}
+//============= End Header =============//
+
+//============= Section Main =============//
+.s-main {
+  margin: 0;
+  position: relative;
+  @include xs {
+    margin-bottom: 100px;
+    .s-main-title {
+      text-align: center;
+      margin-top: 2px;
+      margin-bottom: 2rem;
+      p {
+        font-size: 24px;
+      }
     }
   }
-  .lang-select {
-    position: relative;
-    margin-left: 1rem;
-    cursor: pointer;
-    font-weight: 500;
-    text-transform: uppercase;
-    z-index: 0;
+  @media (min-width: $md) {
+    .s-main-title {
+      p {
+        font-size: 28px;
+        margin-bottom: 0;
+      }
+    }
+  }
+  @include md {
+    height: calc(100vh - 116px);
+    padding-top: 50px;
+    .s-main-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+  @media (min-width: $lg) and (max-width: 1439px) {
+    padding-top: 30px;
+    .s-main-title {
+      margin-top: 100px;
+      h1 {
+        padding-right: 45px;
+      }
+    }
+  }
+  @media (min-width: 1440px) {
+    height: calc(100vh - 146px);
+    padding-top: 80px;
+    .s-main-title {
+      margin-top: 150px;
+      h1 {
+        padding-right: 30px;
+      }
+    }
+  }
+  .s-main-more {
+    width: 120px;
+    font-size: 18px;
+    text-align: right;
+    position: absolute;
+    transform: rotate(-90deg);
+    @include xs {
+      left: 77%;
+      bottom: 60%;
+    }
+    @media (min-width: $md) and (max-width: 1023px) {
+      bottom: 10%;
+      left: 85%;
+    }
+    @media (min-width: 1024px) {
+      bottom: 20%;
+      left: 45%;
+    }
     &:hover {
-      .language-chooser {
+      cursor: pointer;
+    }
+    .arrow {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $yellow;
+      border-radius: 10px;
+      position: relative;
+      &::before, &::after {
+        content: '';
         display: block;
+        width: 15px;
+        height: 3px;
+        position: absolute;
+        left: -2px;
+        background-color: $yellow;
+        border-radius: 10px;
+      }
+      &::before {
+        top: -5px;
+        transform: rotate(-45deg);
+      }
+      &::after {
+        top: 5px;
+        transform: rotate(45deg);
       }
     }
-    #currentLang {
+  }
+  .s-main-img {
+    @media (min-width: $md) and (max-width: 1023px) {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50px;
-      height: 50px;
-      background-color: $white;
-      color: $blue-dt;
-      border: 2px solid $blue-dt;
-      border-radius: 2rem;
-      z-index: 1;
-    }
-    .language-chooser {
-      @include position(absolute, 0, null, null, null, -1);
-      width: 50px;
-      padding-left: 0;
-      padding-top: 3.2rem;
-      padding-bottom: .5rem;
-      border: 2px solid $blue-dt;
-      border-radius: 2rem;
-      text-align: center;
-      background-color: $white;
-      list-style: none;
-      display: none;
-      animation: down 0.3s;
-      a {
-        margin: 0;
-        color: $blue-dt;
-        text-decoration: none;
-        transition: color .4s ease-in-out;
-        &:hover {
-          color: $blue-dt;
-        }
-      }
-      .active {
-        display: none;
-      }
     }
   }
 }
+//============= End Section Main =============//
 
-.s-main {
-  height: 100vh;
-  padding-right: 0px;
-  padding-left: 0px;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: inherit;
-  @include xs {
-    padding: 80px 0;
-    background-position: 50% 50%;
-  }
-  @media (min-height: $md) {
-    padding-top: 150px;
-    padding-bottom: 200px;
-  }
-  @include md {
-    background-position-x: 85%;
-  }
-  @include lg {
-    background-position: 50% 50%;
-  }
-  p {
-    font-size: 22px;
-  }
-}
-
-.s-procedures {
-  .procedure {
-    height: 200px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-  .procedure-anchor,
-  .procedure-link {
-    position: relative;
-    width: 100%;
-    height: 100%;
+//============= Section Services =============//
+.s-services {
+  .service {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: $white;
-    &.active {
-      &::before {
-        background-color: rgba($yellow, .6);
+    @include element(img) {
+      width: 250px;
+      height: 250px;
+      border-radius: 100%;
+      background-color: $yellow;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 20px;
+      img {
+        width: 80%;
       }
     }
-    &:hover {
-      &::before {
-        background-color: rgba($yellow, .6);
-      }
-      .procedure-more {
-        opacity: 1;
-        transform: translateY(-70px);
-      }
-    }
-    &::before {
-      display: block;
-      content: '';
-      position: absolute;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba($black, .5);
-      transition: background-color .4s ease-in-out;
-    }
-    .procedure-name, .procedure-more {
-      z-index: 1;
-    }
-    .procedure-name {
+    @include element(name) {
+      font-size: 24px;
       text-align: center;
-      @media (max-width: 1023px) {
-        font-size: 34px;
+      margin-bottom: 20px;
+    }
+    @include element(more) {
+      padding: 5px 38px;
+    }
+  }
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    button {
+      position: absolute;
+      bottom: -24px;
+    }
+  }
+}
+//============= End Section Services =============//
+
+//============= Section About =============//
+.s-about {
+  .about-text {
+    text-align: center;
+    p:last-child {
+      margin-bottom: 0;
+    }
+    @include xs {
+      font-size: 24px;
+    }
+    @media (min-width: $md) {
+      font-size: 26px;
+    }
+  }
+}
+//============= End Section About =============//
+
+
+//============= Section Consultation =============//
+.s-consultation {
+  .signup-container {
+    border-radius: 40px;
+    background-color: $yellow;
+    text-align: center;
+    @include xs {
+      padding: 60px 30px;
+    }
+    @media (min-width: $md) {
+      padding: 60px 45px;
+    }
+    p {
+      font-size: 24px;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      &.slog, &.text-under {
+        font-size: 20px;
+        margin-top: 1.5rem;
+        margin-bottom: 0;
       }
     }
-    .procedure-more {
-      position: absolute;
-      bottom: -25px;
-      opacity: 0;
-      transition: opacity .2s ease-in-out, transform .4s ease-in-out;
+  }
+}
+//============= End Section Consultation =============//
+
+//============= Section Specialists =============//
+.s-specialists {
+  .spec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include element(photo) {
+      width: 255px;
+      height: 350px;
+      border-radius: 40px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    @include element(name) {
+      margin-top: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    @include element(description) {
+      font-size: 20px;
+      line-height: 1.2;
+      text-align: center;
+      //max-width: 255px;
     }
   }
 }
+//============= End Section Specialists =============//
 
-.procedure-section {
-  display: none;
-  &.active {
-    display: block;
-    opacity: 1;
+//============= Section Advantages =============//
+.s-advantages {
+  /*.advantages-text {
+    font-size: 28px;
+  }
+  ul {
+    margin-bottom: 0;
+    li {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }*/
+}
+//============= End Section Advantages =============//
+
+//============= Section Results =============//
+.s-results {
+  .these {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include element(icon) {
+      margin-bottom: .25rem;
+      i {
+        font-size: 40px;
+      }
+    }
+    @include element(text) {
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
+      padding: 0 2rem;
+    }
+  }
+  .slider {
+    margin-top: 3rem;
+    .slick-track {
+      @media (min-width: $md) {
+        height: 60vh;
+        .slick-slide {
+          border-radius: 40px;
+          overflow: hidden;
+        }
+      }
+    }
   }
 }
+//============= End Section Results =============//
 
+//============= Section Reviews =============//
+.s-reviews {
+  /*.slider-item {
+    display: flex;
+    justify-content: center;
+  }*/
+  .review {
+    margin: 1rem;
+    padding: 40px 24px;
+    //width: 500px;
+    background-color: $white;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+    i {
+      color: $yellow;
+      margin-bottom: 1rem;
+      &::before {
+        font-size: 32px;
+      }
+    }
+    @include element(text) {
+      margin-bottom: 1.5rem;
+    }
+    .author {
+      display: flex;
+      align-items: center;
+      @include element(photo) {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+      }
+      @include element(data) {
+        margin-left: 1.5rem;
+        .position {
+          color: $black-50;
+        }
+      }
+    }
+  }
+}
+//============= End Section Reviews =============//
+
+//============= Section Appointment =============//
+.s-appointment {
+  @extend .s-consultation;
+  &.-service {
+    .slog {
+      display: none;
+    }
+  }
+}
+//============= End Section Appointment =============//
+
+//============= Section Contacts =============//
+.s-contacts {
+  h6 {
+    margin-bottom: 20px;
+  }
+  .call-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    a {
+      text-decoration: underline;
+      color: $black-75;
+      &:not(:last-child) {
+        margin-bottom: .75rem;
+      }
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+  .socials {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    .social-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 2px solid $black;
+      border-radius: 50%;
+      margin: 0 1rem;
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+  .we-working {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    p {
+      margin-bottom: .25rem;
+    }
+  }
+}
+//============= End Section Contacts =============//
+
+
+//============= Pages Services =============//
 .about {
-  .block-title {
-    text-align: left;
+  @include xs {
+    margin-top: 0;
+  }
+  @media (min-width: $md) and (max-width: 1439px) {
+    margin-top: 2rem;
+  }
+  img {
+    border-radius: 40px;
   }
   button {
-    @media (max-width: $md-top) {
-      margin: 0 auto;
-      display: block;
-    }
+    margin-top: 2rem;
+  }
+}
+
+.whom {
+  img {
+    border-radius: 40px;
+  }
+  .subtitle {
+    margin-bottom: 2rem;
   }
 }
 
 .zone {
+  img {
+    border-radius: 40px;
+  }
+  .subtitle {
+    margin-bottom: 2rem;
+  }
   @include element(description) {
     font-size: 24px;
     font-weight: 500;
@@ -506,14 +946,6 @@ h2 {
 }
 
 .ba {
-  .block-title {
-    @include xs {
-      margin-bottom: 2rem;
-    }
-    @media (min-width: $md) {
-      margin-bottom: 3rem;
-    }
-  }
   .ba-title {
     display: flex;
     margin-bottom: 1rem;
@@ -528,7 +960,7 @@ h2 {
     }
     i {
       font-size: 40px;
-      color: $blue-dt;
+      //color: $blue-dt;
       @media (max-width: $md-top) {
         margin-bottom: .5rem;
       }
@@ -545,25 +977,19 @@ h2 {
   }
 }
 
-.advantages {
-  .advantages-item {
-    display: flex;
+.advantages, .s-advantages {
+  .subtitle {
     @include xs {
-      flex-direction: column;
-      align-items: center;
+      margin-bottom: 3rem;
     }
     @media (min-width: $md) {
-      flex-direction: row;
-      align-items: flex-start;
+      margin-bottom: 2rem;
     }
-    i {
-      font-size: 40px;
-      margin-right: 1rem;
-      color: $blue-dt;
-      &.fa-3x {
-        font-size: 3em !important;
-      }
-    }
+  }
+  .advantages-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     p {
       line-height: 1.2;
       @include xs {
@@ -571,21 +997,52 @@ h2 {
       }
     }
   }
+  .icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $black;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    i {
+      font-size: 30px;
+      &.fa-mars {
+        font-size: 36px;
+      }
+    }
+  }
+  .description {
+    text-align: center;
+    font-size: 24px;
+  }
 }
 
 .how {
-  @include xs {
-    img {
-      width: 50%;
-      display: block;
-      margin: 0 auto;
+  img, video {
+    border-radius: 40px;
+  }
+  .subtitle {
+    margin-bottom: 2rem;
+  }
+  .how-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+      @include xs {
+        font-size: 22px;
+      }
     }
   }
 }
 
 .opinion {
   i {
-    color: $blue-dt;
+    //color: $blue-dt;
     margin-bottom: .5rem;
   }
   @include element(text) {
@@ -597,26 +1054,26 @@ h2 {
   }
   @include element(expert) {
     display: flex;
+    align-items: center;
     .expert-photo {
-      width: 128px;
-      height: 128px;
+      width: 150px;
+      height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border-radius: 100%;
-      border: 4px solid $white;
-      margin-right: 1rem;
+      border-radius: 50%;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     }
     .expert-info {
-      padding-top: .75rem;
+      margin-left: 1.5rem;
       @include xs {
         width: 50%;
       }
       .name {
         font-weight: 700;
         margin-bottom: 0;
-        color: $blue-dt;
+        //color: $blue-dt;
         @include xs {
           font-size: 20px;
         }
@@ -625,6 +1082,7 @@ h2 {
         }
       }
       .position {
+        color: $black-50;
         @include xs {
           font-size: 16px;
           line-height: 1.2;
@@ -633,33 +1091,30 @@ h2 {
     }
   }
 }
+//============= End Pages Services =============//
 
-/* Section SEO */
+//============= Section SEO =============//
 .s-seo {
-  padding-top: 50px;
-  padding-bottom: 50px;
   .seo-container {
     position: relative;
-    @include xs {
-      display: flex;
-      justify-content: center;
-    }
-    @media (min-width: $md) {
-      padding-right: 9rem;
-    }
+    display: flex;
+    justify-content: center;
     &.open {
       .seo-text {
-        max-height: none;
+        &::after {
+          background: transparent;
+        }
       }
       .seo-btn {
+        bottom: -50px;
         &:before {
-          content: "\f068";
+          transform: rotate(180deg);
         }
       }
     }
   }
   .seo-text {
-    max-height: 6rem;
+    height: 96px;
     overflow: hidden;
     p {
       margin-bottom: 10px;
@@ -670,11 +1125,19 @@ h2 {
       margin-bottom: 15px;
       font-weight: bold;
       font-size: 1.2em;
-      color: $blue-dt;
     }
     ul {
       padding-left: 40px;
       margin-bottom: 10px;
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba($white, 0) 20%, $white 100%);
+      position: absolute;
+      bottom: 0;
     }
   }
   .seo-btn {
@@ -682,23 +1145,16 @@ h2 {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 20px;
+    bottom: -20px;
     width: 40px;
     height: 40px;
-    font-size: 15px;
-    border: 2px solid $blue-dt;
+    border: 2px solid $black;
     border-radius: 50%;
     background-color: $white;
-    color: $blue-dt;
+    color: $black;
     transition: all .4s ease-in-out;
-    @include xs {
-      top: -40px;
-    }
-    @media (min-width: $md) {
-      right: 3rem;
-    }
     &:hover {
-      background-color: $blue-dt;
+      background-color: $black;
       color: $white;
     }
     &:hover,
@@ -709,25 +1165,24 @@ h2 {
     &:before {
       font-family: "Font Awesome 5 Free";
       font-weight: bold;
-      content: "\f067";
+      content: "\f078";
       text-align: center;
+      font-size: 20px;
+      transition: transform .4s ease-in-out;
     }
   }
 }
+//============= End Section SEO =============//
 
-.s-appointment {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  background-color: $blue-dt;
-  color: $white;
+//============= Map =============//
+.map {
+  height: 310px;
+  border: 2px solid $black-25;
+  border-radius: 40px;
 }
+//============= End Map =============//
 
-.s-map {
-  .map {
-    height: 500px;
-  }
-}
-
+//============= Btn Scroll-Up =============//
 .scroll-up {
   position: fixed;
   right: 20px;
@@ -736,15 +1191,17 @@ h2 {
   justify-content: center;
   width: 45px;
   height: 45px;
-  background-color: $yellow;
+  background-color: $yellow-75;
   border-radius: 2rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   color: $white;
   opacity: 0;
   transition: opacity .4s ease-in-out, background-color .15s ease-in-out;
-  z-index: 9999;
+  z-index: 1999;
   &:hover {
     color: $white;
-    background-color: lighten($yellow, 10);
+    background-color: lighten($yellow, 20);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25) !important;
   }
   &.-show {
     opacity: 1;
@@ -756,120 +1213,484 @@ h2 {
     bottom: 20px;
   }
 }
+//============= Btn Scroll-Up =============//
 
+//============= Footer =============//
 .footer {
-  background-color: $blue-dt;
-  @include element(content) {
-    display: flex;
-    align-items: center;
+  background-color: $black-5;
+  @include element(nav) {
     padding: 1rem 0;
-    color: $white;
-    @include xs {
-      flex-direction: column;
-    }
-    @media (min-width: $md) {
+    ul.menu {
+      margin-bottom: 0;
+      padding-left: 0;
+      display: flex;
       justify-content: space-between;
-    }
-    h2 {
-      font-size: 20px;
-      @include xs {
-        margin-bottom: 1rem;
+      @media (max-width: $md-top) {
+        flex-wrap: wrap;
       }
-      @media (min-width: $md) {
-        margin-bottom: 0;
-      }
-    }
-    .socials {
-      a {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: $white;
-        border-radius: 40px;
-        margin: 0 .25rem;
-        &:hover {
-          i {
-            color: $yellow;
+      li {
+        list-style: none;
+        a {
+          font-size: 18px;
+          &:hover {
+            text-decoration: underline;
+            color: $black;
           }
         }
       }
-      i {
-        color: $blue-dt;
-        transition: .2s ease-in-out;
+      & > .menu-item {
+        &:hover {
+          cursor: pointer;
+        }
+        & > a {
+          font-weight: bold;
+        }
+        @include xs {
+          flex: 0 0 44%;
+          margin: 0 10px 10px;
+        }
+        @include md {
+          flex: 0 0 33%;
+          margin-bottom: .5rem;
+        }
+      }
+      .sub-menu {
+        padding-left: 0;
       }
     }
   }
-}
-
-.c-modal, .a-modal {
-  .modal-header {
-    justify-content: flex-end;
-    border-bottom: none;
-  }
-  .form-subtitle {
-    padding: 0 1rem;
-  }
-  textarea {
-    font-size: 1.25rem;
-    &::placeholder {
-      font-size: 1.25rem;
-    }
+  @include element(content) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+    color: $black;
+    background-color: $yellow;
+    font-weight: 500;
   }
 }
+//============= End Footer =============//
 
-.s-price,
-.s-price-sub {
-  @extend .s-procedures;
+//============= Price =============//
+.s-price {
   .procedure {
-    height: 165px;
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    background-color: $black-5;
     animation: flip-down;
     animation-duration: 1000ms;
-    animation-delay: 100ms;
+    animation-delay: 200ms;
     animation-iteration-count: 1;
+    transition: background-color .4s ease-in;
+    &:hover {
+      background-color: $yellow-50;
+      cursor: pointer;
+    }
+    @include element(link) {
+      width: 100%;
+      height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        color: $black;
+      }
+    }
+    @include element(name) {
+      margin-bottom: 0;
+      text-align: center;
+    }
   }
 }
 
 .s-price-sub {
   .service {
+    height: 360px;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
     animation: flip-down;
     animation-duration: 1000ms;
-    animation-delay: 100ms;
+    animation-delay: 200ms;
     animation-iteration-count: 1;
     &:hover {
       cursor: pointer;
     }
-    .service-image {
-      width: 100px;
-      height: 100px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    .service-info {
-      width: calc(100% - 100px);
-      display: flex;
-      flex-direction: column;
-      padding: 5px 5px 5px 10px;
-    }
-    .service-name {
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    .service-price {
+  }
+  .service-image {
+    width: 100%;
+    height: 65%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .service-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 35%;
+    padding: 15px;
+  }
+  .service-name {
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .service-price {
+    display: flex;
+    flex-direction: column;
+    .price {
       text-align: right;
+      font-size: 24px;
       font-weight: bold;
-      color: $blue;
+      color: $black;
     }
-    .service-note {
-      font-size: 12px;
+    .note {
+      font-size: 14px;
       text-align: right;
-      color: $blue;
+      color: $black-75;
+      i {
+        color: $black-75;
+      }
     }
   }
 }
+//============= End Price =============//
+
+//========== Cd-Panel ==========//
+.cd-panel {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+  .cd-panel-close {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    height: 45px;
+    width: 60px;
+    display: inline-block;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    cursor: pointer;
+    z-index: 100;
+    &::before, &::after {
+      content: " ";
+      position: absolute;
+      top: 22px;
+      left: 20px;
+      height: 4px;
+      width: 30px;
+      background-color: $black;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  &.is-visible {
+    opacity: 1;
+    transition: opacity .4s ease-in;
+  }
+  .cd-panel-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    top: 0;
+    z-index: 1;
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-delay: 0.3s;
+    @include modifier(black) {
+      background: $black;
+    }
+    @include modifier(white) {
+      background: $white;
+    }
+  }
+  .cd-panel-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    .cd-panel-nav {
+      padding: 50px 15px 0;
+    }
+    ul {
+      padding-left: 15px;
+      margin-bottom: 0;
+      li {
+        list-style: none;
+      }
+    }
+    .menu {
+      .menu-item {
+        &:not(:last-child) {
+          margin-bottom: 1.5rem;
+        }
+        a {
+          font-size: 32px;
+          font-weight: bold;
+          color: $black-50;
+        }
+      }
+      .menu-item-has-children {
+        & > a {
+          &::after {
+            @extend %icon;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f107";
+            font-size: 26px;
+            margin-left: .75rem;
+            transition: transform .25s ease-in;
+          }
+        }
+        &.open-menu {
+          a {
+            &::after {
+              transform: rotate(180deg);
+            }
+          }
+          .sub-menu {
+            max-height: 500px;
+          }
+        }
+      }
+      .current-menu-ancestor > a {
+        color: $black;
+      }
+      .sub-menu {
+        padding-left: 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease-in;
+        .menu-item {
+          &:not(:last-child) {
+            margin-bottom: 1rem;
+          }
+          a {
+            font-size: 26px;
+            font-weight: bold;
+          }
+        }
+        .current-menu-item a {
+          color: $black;
+        }
+      }
+    }
+    .language {
+      position: fixed;
+      right: 0;
+      bottom: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      transform: rotate(90deg);
+      li {
+        text-transform: uppercase;
+        list-style: none;
+        a {
+          color: $black-50;
+          font-size: 28px;
+          font-weight: bold;
+          &:hover {
+            color: $black;
+          }
+        }
+        &:first-child {
+          display: flex;
+          position: relative;
+          margin-right: 6px;
+          padding-right: 8px;
+          &::after {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 28px;
+            background-color: $black;
+            position: absolute;
+            top: 7px;
+            right: 0;
+          }
+        }
+        &.current-lang a {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+//========== End Cd-Panel ==========//
+
+//========== Modal ==========//
+.modal {
+  .close {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    color: $black-75;
+  }
+  .modal-content {
+    border-radius: 40px;
+    border: 4px solid $yellow;
+  }
+  .modal-body {
+    @include xs {
+      padding: 50px;
+    }
+    @media (min-width: $md) {
+      padding: 50px 70px;
+    }
+  }
+  .form-content {
+    .form-title {
+      margin-bottom: 1rem;
+    }
+    .form-subtitle {
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+    .slog {
+      font-size: 18px;
+      margin-bottom: 3rem;
+    }
+  }
+  &.-price {
+    img {
+      border-radius: 20px;
+    }
+    .modal-body {
+      padding: 1rem;
+    }
+    .modal-footer {
+      justify-content: normal !important;
+    }
+  }
+}
+//========== End Modal ==========//
+
+//========== Page 404 ==========//
+.s-404 {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 146px);
+}
+//========== End Page 404 ==========//
+
+//========== Blog ==========//
+.s-post {
+  p {
+    font-size: 24px;
+  }
+}
+.post-card {
+  margin: 1rem 0;
+  //padding: 1.5rem;
+  background-color: $white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: none;
+  img {
+    border-radius: 20px;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  .card-title {
+    margin-bottom: 1.5rem;
+  }
+}
+//========== End Blog ==========//
+
+/*кнопка звонка*/
+.callback-bt {
+  background-color: $yellow;
+  border: 2px solid $yellow;
+  border-radius: 50%;
+  box-shadow: 0 8px 10px rgba($yellow, 0.3);
+  cursor: pointer;
+  height: 68px;
+  width: 68px;
+  text-align: center;
+  position: fixed;
+  bottom: 12%;
+  z-index: 999;
+  transition: .3s;
+  animation: hoverWave linear 1s infinite;
+  @include xs {
+    right: 6%;
+  }
+  @media (min-width: $md) {
+    right: 3%;
+  }
+}
+
+.callback-bt .text-call{
+  height: 68px;
+  width: 68px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.callback-bt .text-call span {
+  text-align: center;
+  color: $black-75;
+  opacity: 0;
+  font-size: 0;
+  position: absolute;
+  right: 4px;
+  top: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: opacity .3s linear;
+}
+
+.callback-bt .text-call:hover span {
+  opacity: 1;
+  font-size: 10px;
+}
+.callback-bt:hover i {
+  display: none;
+}
+
+.callback-bt:hover {
+  z-index: 1;
+  background: $white;
+  color:transparent;
+  transition:.3s;
+}
+.callback-bt:hover i {
+  color: $yellow;
+  font-size: 40px;
+  transition: .3s;
+}
+.callback-bt i {
+  color: $white;
+  font-size: 34px;
+  line-height: 66px;
+  transition: .5s ease-in-out;
+}
+
+.callback-bt i  {
+  animation: 1200ms ease 0s normal none 1 running shake;
+  animation-iteration-count: infinite;
+}
+/* конец кнопки звонка */
