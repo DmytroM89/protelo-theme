@@ -8,7 +8,7 @@ get_header(); ?>
     <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 </div>
 
-<section class="s-about">
+<section class="s-about" data-aos="zoom-in" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">

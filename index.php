@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-    <section class="s-main">
+    <section class="s-main" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-7">
@@ -33,7 +33,7 @@ get_header(); ?>
 
     if (!empty($services) && is_array($services)):
     ?>
-    <section class="s-services bg-rect bg-rect--right">
+    <section class="s-services bg-rect bg-rect--right" data-aos="fade-left" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -72,7 +72,7 @@ get_header(); ?>
 
     if (!empty($aboutTitle) ):
     ?>
-    <section class="s-about">
+    <section class="s-about" data-aos="zoom-in" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -90,7 +90,7 @@ get_header(); ?>
     </section>
     <?php endif; ?>
 
-    <section class="s-consultation">
+    <section class="s-consultation" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -109,7 +109,7 @@ get_header(); ?>
 
     if (!empty($specialists) && is_array($specialists)):
     ?>
-    <section class="s-specialists bg-rect bg-rect--left">
+    <section class="s-specialists bg-rect bg-rect--left" data-aos="fade-right" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -136,7 +136,7 @@ get_header(); ?>
 
     if (!empty($advantages) && is_array($advantages)):
     ?>
-    <section class="s-advantages">
+    <section class="s-advantages" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -183,7 +183,7 @@ get_header(); ?>
 
     if (!empty($resultTitle)):
     ?>
-    <section class="s-results bg-rect bg-rect--right">
+    <section class="s-results bg-rect bg-rect--right" data-aos="fade-left" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -229,7 +229,7 @@ get_header(); ?>
 
     if (!empty($reviewTitle) && !empty($reviews)):
     ?>
-    <section class="s-reviews">
+    <section class="s-reviews" data-aos="zoom-in" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -263,7 +263,7 @@ get_header(); ?>
     </section>
     <?php endif; ?>
 
-    <section class="s-appointment">
+    <section class="s-appointment" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">

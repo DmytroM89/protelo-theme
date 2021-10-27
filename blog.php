@@ -17,7 +17,7 @@ $categories = get_categories(array(
     <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 </div>
 
-<section class="s-blog">
+<section class="s-blog" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">

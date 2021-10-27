@@ -14,7 +14,7 @@ if (!empty($services) && is_array($services)):
         <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
     </div>
 
-    <section class="s-price-sub">
+    <section class="s-price-sub" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">

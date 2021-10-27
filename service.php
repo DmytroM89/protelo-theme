@@ -9,7 +9,7 @@ get_header(); ?>
 </div>
 
 
-<div class="container">
+<div class="container" data-aos="fade-up" data-aos-duration="2000">
     <div class="row">
         <div class="col-12">
             <h2 class="section-title"><?php the_field('name'); ?></h2>
@@ -22,7 +22,7 @@ $about = get_field('about');
 
 if (!empty($about['title'])):
 ?>
-<section class="about">
+<section class="about" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6">
@@ -54,7 +54,7 @@ $whom = get_field('whom');
 
 if (!empty($whom['title'])):
 ?>
-<section class="whom bg-rect bg-rect--left"">
+<section class="whom bg-rect bg-rect--left" data-aos="fade-right" data-aos-duration="2000">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8 text-center">
@@ -80,7 +80,7 @@ $zone = get_field('zone');
 
 if (!empty($zone['title'])):
 ?>
-<section class="zone">
+<section class="zone" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -109,7 +109,7 @@ $beforeAfter = get_field('results');
 
 if (!empty($beforeAfter['title'])):
 ?>
-<section class="s-results bg-rect bg-rect--right">
+<section class="s-results bg-rect bg-rect--right" data-aos="fade-left" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -154,7 +154,7 @@ $advantages = get_field('advantages');
 
 if (!empty($advantages['items']) && is_array($advantages['items'])):
 ?>
-<section class="advantages">
+<section class="advantages" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -202,7 +202,7 @@ $how = get_field('how');
 
 if (!empty($how['title'])):
 ?>
-<section class="how bg-rect bg-rect--left">
+<section class="how bg-rect bg-rect--left" data-aos="fade-right" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -241,7 +241,7 @@ $appointment = get_field('appointment');
 
 if (!empty($appointment['title'])):
 ?>
-<section class="s-appointment -service">
+<section class="s-appointment -service" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -270,7 +270,7 @@ $contraindications = get_field('contraindications');
 
 if (!empty($contraindications['title'])):
 ?>
-<section class="contraindications bg-rect bg-rect--right">
+<section class="contraindications bg-rect bg-rect--right" data-aos="fade-left" data-aos-duration="2000">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
@@ -306,7 +306,7 @@ $opinion = get_field('opinion');
 
 if (!empty($opinion['title'])):
 ?>
-<section class="opinion">
+<section class="opinion" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-12">

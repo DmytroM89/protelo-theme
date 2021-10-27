@@ -14,7 +14,7 @@ if (!empty($procedures) && is_array($procedures)):
         <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
     </div>
 
-    <section class="s-price">
+    <section class="s-price" data-aos="fade-up" data-aos-duration="2000">
         <div class="container">
             <div class="row">
                 <div class="col-12">

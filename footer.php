@@ -1,4 +1,4 @@
-            <section class="s-contacts">
+            <section class="s-contacts" data-aos="fade-up" data-aos-duration="2000">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -58,7 +58,7 @@
             if (in_array($post_id, $postArr)):
             ?>
             <!-- Section SEO text -->
-            <section class="s-seo">
+            <section class="s-seo" data-aos="fade-up" data-aos-duration="2000">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12 col-lg-10">

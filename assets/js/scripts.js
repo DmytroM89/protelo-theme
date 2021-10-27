@@ -25,6 +25,8 @@ jQuery(document).ready(function($) {
         ]
     });
 
+    AOS.init();
+
     /**
      * Маска для номера телефона
      */
