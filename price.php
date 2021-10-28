@@ -21,7 +21,7 @@ if (!empty($procedures) && is_array($procedures)):
                     <h2 class="section-title"><?php pll_e('price');?></h2>
                 </div>
             </div>
-            <?php if (!is_page('price')): ?>
+            <?php if (!is_page('price') && !is_page('price-ua')): ?>
             <div class="row justify-content-center mb-3">
                 <div class="col-12 col-md-8">
                     <a class="btn back-btn" onClick="history.back()" role="button">
@@ -35,7 +35,7 @@ if (!empty($procedures) && is_array($procedures)):
                     <div class="row">
                         <?php foreach ($procedures as $procedure): ?>
                             <div class="col-12 col-md-6 mb-3">
-                                <div class="procedure">
+                                <div class="procedure" style="background-image: url('<?php echo $procedure['photo']; ?>')">
                                     <a class="procedure-link" href="<?php echo $procedure['link']; ?>">
                                         <h4 class="procedure-name"><?php echo $procedure['name']; ?></h4>
                                     </a>
