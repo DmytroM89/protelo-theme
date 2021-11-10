@@ -1,27 +1,31 @@
 jQuery(document).ready(function($) {
-    // Loader
-    $('#page-preloader').fadeOut('slow');
-    $('#page-preloader .fa-spinner').fadeOut('slow');
-
     // Slider
-    $('.slider').slick({
+    $('#mSlider').slick({
         arrows: true,
-        dots: true,
         infinite: true,
-        fade: true,
-        speed: 500,
-        autoplay: false,
-        autoplaySpeed: 7000,
+        dots: true,
         adaptiveHeight: true,
+        swipe: false
+    });
+
+    $('#sReviews').slick({
+        arrows: true,
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        dots: true,
         responsive: [
             {
-                breakpoint: 1199,
+                breakpoint: 1024,
                 settings: {
-                    arrows: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
                 }
             }
         ]
     });
+
+    AOS.init();
 
     /**
      * Маска для номера телефона
@@ -33,8 +37,23 @@ jQuery(document).ready(function($) {
     /**
      * Скрыть/показать текст SEO`шный
      */
-    $('.seo-btn').on('click', function () {
-        $('.seo-container').toggleClass('open');
+    $('.seo-btn').on('click', function (event) {
+        var seoText = $(event.target).siblings('.seo-text');
+
+        if (!$('.seo-container').hasClass('open')) {
+            $(seoText).animate({
+                height: $(seoText).get(0).scrollHeight
+            }, 1000, function(){
+                $(this).height('auto');
+                $('.seo-container').toggleClass('open');
+            });
+        } else {
+            $(seoText).animate({
+                height: '96px'
+            }, 1000, function() {
+                $('.seo-container').toggleClass('open');
+            });
+        }
     })
 
     /**
@@ -44,7 +63,7 @@ jQuery(document).ready(function($) {
         let header = $('.header'),
             scroll = $(this).scrollTop();
 
-        if (scroll >= 150) {
+        if (scroll >= 350) {
             header.addClass('-sticky');
         } else if (scroll == 0) {
             header.removeClass('-sticky');
@@ -61,48 +80,57 @@ jQuery(document).ready(function($) {
      * Scroll to top
      */
     $('.scroll-up').click(function() {
-        $('body,html').animate({scrollTop:0},400);
+        $('body,html').animate({scrollTop: 0}, 400);
     });
 
     /**
-     * Scroll to anchor
+     * More details scroll
      */
-    $('a[href^="#"]').bind('click.smoothscroll', function(e) {
-        e.preventDefault();
+    $('#moreDetails').on('click', function () {
+        $('body,html').animate({scrollTop: $('.s-services').offset().top-350+"px"}, 300);
+    });
 
-        let headerHeight = $('header').height();
-        let anchor = this.hash,
-        $anchor = $(anchor);
+    //open the lateral panel
+    $('.menu-btn').on('click', function (event) {
+        event.preventDefault();
+        $('.cd-panel--menu').addClass('d-block');
+        $('body').addClass('modal-open');
+        setTimeout(function () {
+            $('.cd-panel--menu').addClass('is-visible');
+        }, 200);
 
-        if (anchor != '#moreDetails') {
-            $('.procedure-anchor').removeClass('active');
-            $('.procedure-section').fadeOut('fast');
-            $anchor.fadeIn('slow');
-            $(this).addClass('active');
+    });
+    //close the lateral panel
+    $('.cd-panel').on('click', function (event) {
+        if ($(event.target).is('.cd-panel') || $(event.target).is('.cd-panel-close')) {
+            $('.cd-panel').removeClass('is-visible');
+            $('body').removeClass('modal-open');
+            setTimeout(function () {
+                $('.cd-panel').removeClass('d-block');
+            }, 500)
+            event.preventDefault();
+        }
+    });
+    /*$('.cd-panel-nav .menu-item-has-children').on('click', function () {
+        $('.cd-panel').removeClass('is-visible');
+    });*/
 
-            setTimeout(function (){
-                $('html,body').animate({scrollTop: $anchor.offset().top - headerHeight}, 100, 'swing');
-            }, 300);
-        } else {
-            $('html,body').animate({scrollTop: $anchor.offset().top - headerHeight}, 100, 'swing');
+    // Open cd-panel-menu
+    $('.cd-panel-nav .menu-item-has-children').on('click', function (event) {
+        // Проверяем открыты ли другие подменю
+        if ($(this).siblings().hasClass('open-menu')) {
+            $(this).siblings().removeClass('open-menu');
         }
 
-
-
+        $(this).toggleClass('open-menu');
     });
 
-    /**
-     * Show select section
-     */
-    $('.procedure-anchor').on('click', function () {
-
-    });
 })
 
 function initMap() {
     let map = new google.maps.Map(document.getElementById('gmap'), {
-        zoom: 18,
-        center: {lat: 48.46411357137196, lng: 35.038633719349434},
+        zoom: 19,
+        center: {lat: +lat, lng: +lng},
         mapTypeControl: false,
         scaleControl: true,
         streetViewControl: true,
@@ -118,7 +146,7 @@ function initMap() {
     });
     let image = '/wp-content/themes/protelo/assets/images/marker.png';
     let marker = new google.maps.Marker({
-        position: {lat: 48.46411357137196, lng: 35.038633719349434},
+        position: {lat: +lat, lng: +lng},
         map: map,
         icon: image
     });
