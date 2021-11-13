@@ -30,9 +30,9 @@ if (!empty($about['title'])):
                     <?php echo $about['title']; ?>
                 </h3>
                 <?php if (!empty($about['subtitle'])): ?>
-                    <p class="subtitle fst-italic"><?php echo $about['subtitle']; ?></p>
+                    <div class="subtitle fst-italic mb-3"><?php echo $about['subtitle']; ?></div>
                 <?php endif; ?>
-                <p class="mb-lg-4 fs-24"><?php echo $about['description']; ?></p>
+                <div class="mb-lg-4"><?php echo $about['description']; ?></div>
             </div>
             <div class="col-12 col-md-6">
                 <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image">
@@ -62,7 +62,7 @@ if (!empty($whom['title'])):
                     <?php echo $whom['title']; ?>
                 </h3>
                 <?php if (!empty($whom['subtitle'])): ?>
-                    <p class=""><?php echo $whom['subtitle']; ?></p>
+                    <div class="whom-desc"><?php echo $whom['subtitle']; ?></div>
                 <?php endif; ?>
             </div>
             <div class="col-12 col-md-6">
@@ -222,9 +222,8 @@ if (!empty($how['title'])):
                 <?php foreach ($how['items'] as $key=>$item): ?>
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="how-item">
-                            <div class="item-img" style="background-image: url('<?php echo $item['image']; ?>')">
-                                <span class="item-idx"><?php echo $key+1; ?></span>
-                            </div>
+                            <span class="item-idx"><?php echo $key+1; ?></span>
+                            <div class="item-img" style="background-image: url('<?php echo $item['image']; ?>')"></div>
                             <div class="item-desc">
                                 <?php echo $item['description']; ?>
                             </div>
@@ -251,7 +250,7 @@ if (!empty($appointment['title'])):
                         <?php echo $appointment['title']; ?>
                     </h4>
                     <?php if (!empty($appointment['subtitle'])): ?>
-                        <p class="subtitle text-center"><?php echo $appointment['subtitle']; ?></p>
+                        <p class="text-center"><?php echo $appointment['subtitle']; ?></p>
                     <?php endif; ?>
 
                     <?php echo do_shortcode(get_field('appointment-form', 'options')); ?>

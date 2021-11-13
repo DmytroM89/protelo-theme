@@ -61,14 +61,16 @@ if (!empty($services) && is_array($services)):
     <div class="modal fade -price" id="serviceModal<?php echo $idx?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header flex-column align-items-start">
+                <div class="modal-header flex-column align-items-start <?php if (empty($service['description'])): ?>border-bottom-0<?php endif; ?>">
                     <img src="<?php echo $service['image']; ?>" alt="service_image">
-                    <h4 class="mt-3 fw-bold"><?php echo $service['name']; ?></h4>
+                    <h4 class="mt-3 fw-bold"><span class="service-name"><?php echo $service['name']; ?></span> <span class="service-price"><?php echo $service['price']; ?></span></h4>
                 </div>
+                <?php if (!empty($service['description'])): ?>
                 <div class="modal-body">
                     <?php echo $service['description']; ?>
                 </div>
-                <div class="modal-footer d-grid gap-2">
+                <?php endif; ?>
+                <div class="modal-footer d-grid gap-2 <?php if (empty($service['description'])): ?>border-top-0<?php endif; ?>">
                     <button type="button" class="btn btn-default" data-bs-dismiss="modal"><?php pll_e('close');?></button>
                 </div>
             </div>

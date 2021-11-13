@@ -91,9 +91,14 @@
                             }
                         ?>
 
+                        <?php
+                            $lang = get_field('lang', 'options');
+                            if ($lang == 1):
+                        ?>
                         <ul class="language">
                             <?php pll_the_languages(array('dropdown'=>0, 'display_names_as'=>'slug')); ?>
                         </ul>
+                        <?php endif; ?>
 
                         <a href="#" class="menu-btn">
                             <i class="fas fa-bars"></i>

@@ -44,10 +44,12 @@ get_header(); ?>
                 <?php foreach ($services as $service): ?>
                     <div class="col-12 col-md-6 col-lg-4 mb-5 mb-xl-0">
                         <div class="service">
-                            <div class="service-img" style="background-image: url('<?php echo $service['image']; ?>')">
-                            </div>
+                            <a href="<?php echo $service['url']; ?>" class="service-img-link">
+                                <div class="service-img" style="background-image: url('<?php echo $service['image']; ?>')"></div>
+                            </a>
+
                             <h5 class="service-name">
-                                <?php echo esc_html( $service['service']->post_title ); ?>
+                                <a href="<?php echo $service['url']; ?>"><?php echo esc_html( $service['service']->post_title ); ?></a>
                             </h5>
                             <a href="<?php echo $service['url']; ?>" class="btn btn-outline-warning service-more" role="button">
                                 <?php pll_e('more_details');?>
@@ -251,9 +253,7 @@ get_header(); ?>
                                     <i class="fas fa-quote-left fs-24"></i>
                                     <p class="review-text"><?php echo $review['text']; ?></p>
                                     <div class="author">
-                                        <div class="author-photo">
-                                            <img src="<?php echo $review['photo']; ?>" alt="author_photo">
-                                        </div>
+                                        <div class="author-photo" style="background-image: url('<?php echo $review['photo']; ?>')"></div>
                                         <div class="author-data">
                                             <h5 class="name mb-0"><?php echo $review['name']; ?></h5>
                                             <p class="position mb-0"><?php echo $review['position']; ?></p>

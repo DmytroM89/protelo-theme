@@ -535,18 +535,18 @@ section {
 
 @media (max-width: 767px) {
   .section-title, .section-title--left {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 }
 @media (min-width: 768px) {
   .section-title, .section-title--left {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 }
 
 .subtitle {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 28px;
   color: #505457;
   line-height: 1.2;
 }
@@ -920,6 +920,32 @@ section {
   flex-direction: column;
   align-items: center;
 }
+.s-services .service-img-link {
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+.s-services .service-img-link::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  transition: background-color 0.4s ease-in;
+}
+.s-services .service-img-link:hover {
+  /*.service-more {
+    background-color: $yellow !important;
+  }*/
+}
+.s-services .service-img-link:hover::after {
+  background-color: rgba(252, 186, 0, 0.4);
+}
+
 .s-services .service-img {
   width: 250px;
   height: 250px;
@@ -933,7 +959,6 @@ section {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom: 20px;
 }
 .s-services .service-img img {
   width: 80%;
@@ -964,16 +989,6 @@ section {
 .s-about .about-text p:last-child {
   margin-bottom: 0;
 }
-@media (max-width: 767px) {
-  .s-about .about-text {
-    font-size: 24px;
-  }
-}
-@media (min-width: 768px) {
-  .s-about .about-text {
-    font-size: 26px;
-  }
-}
 
 .s-consultation .signup-container, .s-appointment .signup-container {
   border-radius: 40px;
@@ -991,12 +1006,10 @@ section {
   }
 }
 .s-consultation .signup-container p, .s-appointment .signup-container p {
-  font-size: 24px;
   margin-bottom: 2rem;
   line-height: 1.2;
 }
 .s-consultation .signup-container p.slog, .s-appointment .signup-container p.slog, .s-consultation .signup-container p.text-under, .s-appointment .signup-container p.text-under {
-  font-size: 20px;
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
@@ -1022,7 +1035,6 @@ section {
 }
 
 .s-specialists .spec-description {
-  font-size: 20px;
   line-height: 1.2;
   text-align: center;
 }
@@ -1054,7 +1066,6 @@ section {
 }
 
 .s-results .these-text {
-  font-size: 24px;
   font-weight: 500;
   text-align: center;
   line-height: 1.2;
@@ -1120,22 +1131,34 @@ section {
   display: flex;
   align-items: center;
 }
+@media (max-width: 767px) {
+  .s-reviews .review .author {
+    flex-direction: column;
+  }
+}
 .s-reviews .review .author-photo {
   width: 150px;
   height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 50%;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 767px) {
+  .s-reviews .review .author-photo {
+    margin-bottom: 1rem;
+  }
 }
 
 .s-reviews .review .author-data {
   margin-left: 1.5rem;
+  flex: 1;
 }
 .s-reviews .review .author-data .position {
+  font-size: 18px;
   color: #8A8D8F;
+  line-height: 1.2;
 }
 
 .s-appointment.-service .slog {
@@ -1222,8 +1245,7 @@ section {
   margin-bottom: 2rem;
 }
 .zone-description {
-  font-size: 24px;
-  font-weight: 500;
+  margin-top: 2rem;
 }
 .zone-description ul {
   margin-bottom: 0;
@@ -1312,7 +1334,6 @@ section {
 }
 .advantages .description, .s-advantages .description {
   text-align: center;
-  font-size: 24px;
 }
 
 .how video {
@@ -1332,27 +1353,37 @@ section {
 .how .how-item {
   display: flex;
   flex-direction: column;
+  position: relative;
+  min-height: 400px;
+  margin-bottom: 2rem;
+  background-color: #FFFFFF;
+  box-shadow: 4px 4px 10px rgba(21, 27, 31, 0.25);
+  border-radius: 30px;
+  overflow: hidden;
 }
 .how .how-item .item-img {
-  position: relative;
   width: 100%;
-  height: 250px;
-  border-radius: 20px;
+  height: 200px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .how .how-item .item-idx {
   position: absolute;
-  bottom: 0;
-  left: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 60px;
+  bottom: -15px;
+  right: 5px;
+  color: #F6F6F6;
+  font-size: 150px;
   font-weight: bold;
   line-height: 1;
+  z-index: 0;
 }
 .how .how-item .item-desc {
   padding: 1rem;
+  line-height: 1.2;
+  z-index: 1;
 }
 @media (max-width: 767px) {
   .how .how-item .item-desc {
@@ -1366,11 +1397,6 @@ section {
 .opinion-text {
   font-style: italic;
   margin-bottom: 2rem;
-}
-@media (min-width: 768px) {
-  .opinion-text {
-    font-size: 22px;
-  }
 }
 
 .opinion-expert {
@@ -1643,7 +1669,7 @@ section {
 }
 .s-price-sub .service-image {
   width: 100%;
-  height: 65%;
+  height: 60%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1652,7 +1678,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 35%;
+  height: 40%;
   padding: 15px;
 }
 .s-price-sub .service-name {
@@ -1665,9 +1691,10 @@ section {
 }
 .s-price-sub .service-price .price {
   text-align: right;
-  font-size: 24px;
+  font-size: 42px;
   font-weight: bold;
-  color: #151B1F;
+  line-height: 1;
+  color: #FCBA00;
 }
 .s-price-sub .service-price .note {
   font-size: 14px;
@@ -1876,6 +1903,16 @@ section {
 }
 .modal.-price img {
   border-radius: 20px;
+}
+.modal.-price .modal-header h4 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal.-price .modal-header .service-price {
+  color: #FCBA00;
+  font-size: 42px;
 }
 .modal.-price .modal-body {
   padding: 1rem;
