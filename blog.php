@@ -13,20 +13,20 @@ $categories = get_categories(array(
 ));
 ?>
 
-<div class="breadcrumbs d-flex mb-5 text-secondary justify-content-center">
+<div class="breadcrumbs-container d-flex mb-5 text-secondary justify-content-center">
     <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 </div>
 
-<section class="s-blog" data-aos="fade-up" data-aos-duration="2000">
+<section class="s-blog">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="section-title"><?php the_title() ?></h2>
+                <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000"><?php the_title() ?></h2>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <div class="rubrics mb-5 d-flex justify-content-center">
+                <div class="rubrics mb-5 d-flex justify-content-center" data-aos="fade-up" data-aos-duration="1000">
                     <?php foreach( $categories as $category ) : ?>
                         <a class="btn btn-default mx-2" href="<?php echo get_category_link( $category->term_id ); ?>" role="button"><?php echo $category->name; ?></a>
                     <?php endforeach; ?>
@@ -37,7 +37,7 @@ $categories = get_categories(array(
             <?php if ($posts) : ?>
                 <?php foreach ($posts as $post) : setup_postdata ($post); ?>
                 <div class="col-12 col-md-4">
-                    <div class="card post-card">
+                    <div class="card post-card" data-aos="fade-up" data-aos-duration="1000">
                         <?php if (get_the_post_thumbnail_url()) : ?>
                         <img src="<?php the_post_thumbnail_url(); ?>" class="card-img-top" alt="post_thumbnail">
                         <?php endif; ?>

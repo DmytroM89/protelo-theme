@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-    <div class="breadcrumbs d-flex mb-5 text-secondary justify-content-center">
+    <div class="breadcrumbs-container d-flex mb-5 text-secondary justify-content-center">
         <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
     </div>
 
@@ -10,7 +10,7 @@
             <?php if (have_posts()) : ?>
                 <?php while (have_posts()) : the_post(); ?>
                     <div class="col-12 col-md-4">
-                        <div class="card post-card">
+                        <div class="card post-card" data-aos="fade-up" data-aos-duration="1000">
                             <?php if (get_the_post_thumbnail_url()) : ?>
                                 <img src="<?php the_post_thumbnail_url(); ?>" class="card-img-top" alt="post_thumbnail">
                             <?php endif; ?>

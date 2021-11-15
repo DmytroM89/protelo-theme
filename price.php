@@ -10,15 +10,15 @@ $procedures = get_field('procedures');
 
 if (!empty($procedures) && is_array($procedures)):
 ?>
-    <div class="breadcrumbs d-flex mb-5 text-secondary justify-content-center">
+    <div class="breadcrumbs-container d-flex mb-5 text-secondary justify-content-center">
         <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
     </div>
 
-    <section class="s-price" data-aos="fade-up" data-aos-duration="2000">
+    <section class="s-price">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="section-title"><?php pll_e('price');?></h2>
+                    <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000"><?php pll_e('price');?></h2>
                 </div>
             </div>
             <?php if (!is_page('price') && !is_page('price-ua')): ?>

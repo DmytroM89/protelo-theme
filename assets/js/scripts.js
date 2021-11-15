@@ -88,7 +88,7 @@ jQuery(document).ready(function($) {
      * More details scroll
      */
     $('#moreDetails').on('click', function () {
-        $('body,html').animate({scrollTop: $('.s-services').offset().top-350+"px"}, 300);
+        $('body,html').animate({scrollTop: $('.s-services').offset().top - 112 +"px"}, 500);
     });
 
     //open the lateral panel

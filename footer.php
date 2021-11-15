@@ -1,13 +1,13 @@
-            <section class="s-contacts" data-aos="fade-up" data-aos-duration="2000">
+            <section class="s-contacts">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="section-title"><?php pll_e('contacts_title');?></h2>
+                            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000"><?php pll_e('contacts_title');?></h2>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-12 col-lg-6">
-                            <div class="call-us">
+                            <div class="call-us" data-aos="fade-up" data-aos-duration="1000">
                                 <h6><?php pll_e('call_us');?></h6>
                                 <?php
                                 $phones = get_field('phones', 'options');
@@ -16,7 +16,7 @@
                                     <a href="tel:<?php echo $phone['number']; ?>"><?php echo $phone['number']; ?></a>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="socials">
+                            <div class="socials" data-aos="fade-up" data-aos-duration="1000">
                                 <h6><?php pll_e('we_socials');?></h6>
                                 <div class="social-links">
                                     <a href="https://www.instagram.com/protelo.dp/" target="_blank">
@@ -27,7 +27,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="we-working">
+                            <div class="we-working" data-aos="fade-up" data-aos-duration="1000">
                                 <h6><?php pll_e('we_working');?></h6>
                                 <p><?php the_field('work_days', 'options'); ?></p>
                                 <p><?php the_field('address', 'options'); ?></p>
@@ -44,7 +44,7 @@
                                         lng = '<?php echo $location['lng'];?>';
                                 </script>
 
-                                <div class="map" id="gmap"></div>
+                                <div class="map" id="gmap" data-aos="fade-up" data-aos-duration="1000"></div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
             if (in_array($post_id, $postArr)):
             ?>
             <!-- Section SEO text -->
-            <section class="s-seo" data-aos="fade-up" data-aos-duration="2000">
+            <section class="s-seo" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12 col-lg-10">

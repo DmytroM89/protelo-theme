@@ -10,15 +10,15 @@ $services = get_field('services');
 
 if (!empty($services) && is_array($services)):
     ?>
-    <div class="breadcrumbs d-flex mb-5 text-secondary justify-content-center">
+    <div class="breadcrumbs-container d-flex mb-5 text-secondary justify-content-center">
         <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
     </div>
 
-    <section class="s-price-sub" data-aos="fade-up" data-aos-duration="2000">
+    <section class="s-price-sub">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="section-title"><?php pll_e('price');?></h2>
+                    <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000"><?php pll_e('price');?></h2>
                 </div>
             </div>
             <div class="row justify-content-center mb-3">

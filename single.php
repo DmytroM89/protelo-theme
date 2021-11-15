@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="breadcrumbs d-flex mb-5 text-secondary justify-content-center">
+<div class="breadcrumbs-container d-flex mb-5 text-secondary justify-content-center">
     <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
 </div>
 
@@ -9,11 +9,11 @@
         <?php if (have_posts()) while (have_posts()) : the_post(); ?>
             <div class="row">
                 <div class="col-12">
-                    <h2 class="section-title"><?php the_title(); ?></h2>
+                    <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000"><?php the_title(); ?></h2>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-8" data-aos="fade-up" data-aos-duration="1000">
                     <?php the_content(); ?>
                 </div>
             </div>
