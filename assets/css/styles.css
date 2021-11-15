@@ -1969,7 +1969,8 @@ section {
   cursor: pointer;
   text-align: center;
   position: fixed;
-  bottom: 3%;
+  left: 22px;
+  bottom: 22px;
   z-index: 999;
   transition: 0.3s;
   animation: hoverWave linear 1s infinite;
@@ -1978,14 +1979,12 @@ section {
   .callback-bt {
     height: 55px;
     width: 55px;
-    left: 5%;
   }
 }
 @media (min-width: 768px) {
   .callback-bt {
     height: 68px;
     width: 68px;
-    left: 3%;
   }
 }
 
