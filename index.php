@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-    <section class="s-main" data-aos="fade-up" data-aos-duration="2000">
+    <section class="s-main">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-7">

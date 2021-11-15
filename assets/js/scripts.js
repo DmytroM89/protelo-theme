@@ -64,11 +64,11 @@ jQuery(document).ready(function($) {
         let header = $('.header'),
             scroll = $(this).scrollTop();
 
-        if (scroll >= 350) {
+        /*if (scroll >= 350) {
             header.addClass('-sticky');
         } else if (scroll == 0) {
             header.removeClass('-sticky');
-        }
+        }*/
 
         if(scroll != 0) {
             $('.scroll-up').addClass('-show');

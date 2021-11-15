@@ -360,7 +360,7 @@ section {
   width: 100%;
   left: 0;
   padding: 1rem 0;
-  position: relative;
+  position: fixed;
   top: 0;
   z-index: 99;
   background: $white;
@@ -514,8 +514,10 @@ section {
 .s-main {
   margin: 0;
   position: relative;
+  margin-bottom: 100px;
   @include xs {
-    margin-bottom: 100px;
+    //margin-bottom: 100px;
+    margin-top: 110px;
     .s-main-title {
       text-align: center;
       margin-top: 2px;
@@ -534,15 +536,14 @@ section {
     }
   }
   @include md {
-    height: calc(100vh - 116px);
-    padding-top: 50px;
+    padding-top: 145px;
     .s-main-title {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-top: 50px;
     }
   }
   @media (min-width: $lg) and (max-width: 1439px) {
-    padding-top: 30px;
+    padding-top: 135px;
     .s-main-title {
       margin-top: 100px;
       h1 {
@@ -551,8 +552,7 @@ section {
     }
   }
   @media (min-width: 1440px) {
-    height: calc(100vh - 146px);
-    padding-top: 80px;
+    padding-top: 135px;
     .s-main-title {
       margin-top: 150px;
       h1 {
@@ -568,14 +568,14 @@ section {
     transform: rotate(-90deg);
     @include xs {
       left: 77%;
-      bottom: 60%;
+      bottom: 10%;
     }
     @media (min-width: $md) and (max-width: 1023px) {
       bottom: 10%;
       left: 85%;
     }
     @media (min-width: 1024px) {
-      bottom: 20%;
+      bottom: 5%;
       left: 45%;
     }
     &:hover {
@@ -609,10 +609,21 @@ section {
     }
   }
   .s-main-img {
+    @include xs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 65%;
+      }
+    }
     @media (min-width: $md) and (max-width: 1023px) {
       display: flex;
       justify-content: center;
       align-items: center;
+      img {
+        width: 60%;
+      }
     }
   }
 }
@@ -1701,29 +1712,34 @@ section {
 /*кнопка звонка*/
 .callback-bt {
   background-color: $yellow;
-  border: 2px solid $yellow;
+  border: 2px solid $yellow-75;
   border-radius: 50%;
   box-shadow: 0 8px 10px rgba($yellow, 0.3);
   cursor: pointer;
-  height: 68px;
-  width: 68px;
   text-align: center;
   position: fixed;
-  bottom: 12%;
+  bottom: 3%;
   z-index: 999;
   transition: .3s;
   animation: hoverWave linear 1s infinite;
   @include xs {
-    right: 6%;
+    height: 55px;
+    width: 55px;
+    left: 5%;
   }
   @media (min-width: $md) {
-    right: 3%;
+    height: 68px;
+    width: 68px;
+    left: 3%;
   }
 }
 
-.callback-bt .text-call{
-  height: 68px;
-  width: 68px;
+.callback-bt .text-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -1754,19 +1770,18 @@ section {
 .callback-bt:hover {
   z-index: 1;
   background: $white;
-  color:transparent;
-  transition:.3s;
-}
-.callback-bt:hover i {
-  color: $yellow;
-  font-size: 40px;
+  color: transparent;
   transition: .3s;
 }
 .callback-bt i {
   color: $white;
-  font-size: 34px;
-  line-height: 66px;
   transition: .5s ease-in-out;
+  @include xs {
+    font-size: 28px;
+  }
+  @media (min-width: $md) {
+    font-size: 34px;
+  }
 }
 
 .callback-bt i  {
