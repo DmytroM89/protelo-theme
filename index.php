@@ -157,7 +157,7 @@ get_header(); ?>
                                 <?php echo $item['icon']; ?>
                             </div>
                             <div class="description">
-                                <p><b><?php echo $item['name']; ?></b></p>
+                                <p class="description-title"><b><?php echo $item['name']; ?></b></p>
                                 <p class="mb-0"><?php echo $item['description']; ?></p>
                             </div>
                         </div>
@@ -210,11 +210,13 @@ get_header(); ?>
                     <div class="slider" id="mSlider" data-aos="fade-up" data-aos-duration="1000">
                         <?php foreach ($baSlider as $baItem): ?>
                             <div class="slider-item">
-                                <div class="result-photo -before">
-                                    <img src="<?php echo $baItem['photo_before']; ?>" alt="before">
-                                </div>
-                                <div class="result-photo -after">
-                                    <img src="<?php echo $baItem['photo_after']; ?>" alt="after">
+                                <div class="result-container">
+                                    <div class="result-photo -before">
+                                        <img src="<?php echo $baItem['photo_before']; ?>" alt="before">
+                                    </div>
+                                    <div class="result-photo -after">
+                                        <img src="<?php echo $baItem['photo_after']; ?>" alt="after">
+                                    </div>
                                 </div>
 
                                 <?php /*echo do_shortcode( '[compare]'.

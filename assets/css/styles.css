@@ -281,7 +281,7 @@ body::-webkit-scrollbar-thumb {
 }
 @media (max-width: 767px) {
   body {
-    font-size: 24px !important;
+    font-size: 16px !important;
   }
 }
 @media (min-width: 768px) {
@@ -305,38 +305,38 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1200px) {
   h1 {
-    font-size: 80px;
+    font-size: 72px;
     margin-bottom: 35px;
   }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
   h1 {
-    font-size: 60px;
+    font-size: 52px;
     margin-bottom: 25px;
   }
 }
 @media (max-width: 767px) {
   h1 {
-    font-size: 50px;
+    font-size: 42px;
     margin-bottom: 20px;
   }
 }
 
 @media (min-width: 1200px) {
   h2 {
-    font-size: 60px;
+    font-size: 54px;
     margin-bottom: 35px;
   }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
   h2 {
-    font-size: 50px;
+    font-size: 44px;
     margin-bottom: 25px;
   }
 }
 @media (max-width: 767px) {
   h2 {
-    font-size: 44px;
+    font-size: 36px;
     margin-bottom: 20px;
   }
 }
@@ -354,34 +354,34 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 1199px) {
   h4 {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 @media (min-width: 1200px) {
   h4 {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 
 @media (max-width: 1199px) {
   h5 {
-    font-size: 26px;
+    font-size: 22px;
   }
 }
 @media (min-width: 1200px) {
   h5 {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 1199px) {
-  h6 {
     font-size: 24px;
   }
 }
+
+@media (max-width: 1199px) {
+  h6 {
+    font-size: 22px;
+  }
+}
 @media (min-width: 1200px) {
   h6 {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
@@ -546,9 +546,18 @@ section {
 
 .subtitle {
   font-weight: 500;
-  font-size: 28px;
   color: #505457;
   line-height: 1.2;
+}
+@media (max-width: 767px) {
+  .subtitle {
+    font-size: 22px;
+  }
+}
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -566,7 +575,7 @@ section {
 
 .btn {
   border-radius: 2rem;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -818,7 +827,7 @@ section {
 }
 @media (min-width: 768px) {
   .s-main .s-main-title p {
-    font-size: 28px;
+    font-size: 22px;
     margin-bottom: 0;
   }
 }
@@ -863,12 +872,12 @@ section {
 @media (max-width: 767px) {
   .s-main .s-main-more {
     left: 77%;
-    bottom: 10%;
+    bottom: 25%;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .s-main .s-main-more {
-    bottom: 10%;
+    bottom: 20%;
     left: 85%;
   }
 }
@@ -1072,7 +1081,7 @@ section {
   align-items: center;
 }
 .s-results .these-icon {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 .s-results .these-icon i {
   font-size: 40px;
@@ -1084,36 +1093,57 @@ section {
   line-height: 1.2;
   padding: 0 2rem;
 }
+@media (max-width: 767px) {
+  .s-results .these-text {
+    font-size: 22px;
+  }
+}
+@media (min-width: 768px) {
+  .s-results .these-text {
+    font-size: 24px;
+  }
+}
 
 .s-results .slider {
   margin-top: 3rem;
 }
-.s-results .slider-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media (max-width: 767px) {
+  .s-results .slider .slick-track {
+    max-height: 400px;
+  }
 }
-
 @media (min-width: 768px) {
   .s-results .slider .slick-track {
     height: 60vh;
   }
-  .s-results .slider .slick-track .slick-slide {
-    border-radius: 40px;
-    overflow: hidden;
+}
+@media (max-width: 767px) {
+  .s-results .slider .slick-slide {
+    height: auto;
   }
 }
-.s-results .slider .result-photo {
-  height: 100%;
-}
-.s-results .slider .result-photo img {
-  height: 100%;
-  border-radius: 40px;
+.s-results .slider .result-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (min-width: 768px) {
+  .s-results .slider .result-container {
+    height: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .s-results .slider .result-photo {
+    height: 100%;
+  }
   .s-results .slider .result-photo img {
     margin: 0 0.25rem;
+    height: 100%;
   }
+}
+.s-results .slider .result-photo img {
+  border-radius: 40px;
+  object-fit: contain;
 }
 
 .s-reviews {
@@ -1169,7 +1199,7 @@ section {
   flex: 1;
 }
 .s-reviews .review .author-data .position {
-  font-size: 18px;
+  font-size: 16px;
   color: #8A8D8F;
   line-height: 1.2;
 }
@@ -1262,7 +1292,7 @@ section {
   margin-bottom: 2rem;
 }
 .zone-description {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .zone-description ul {
   margin-bottom: 0;
@@ -1351,6 +1381,19 @@ section {
 }
 .advantages .description, .s-advantages .description {
   text-align: center;
+}
+.advantages .description .description-title, .s-advantages .description .description-title {
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 767px) {
+  .advantages .description .description-title, .s-advantages .description .description-title {
+    font-size: 22px;
+  }
+}
+@media (min-width: 768px) {
+  .advantages .description .description-title, .s-advantages .description .description-title {
+    font-size: 24px;
+  }
 }
 
 .how video {
@@ -1973,11 +2016,14 @@ section {
   cursor: pointer;
   text-align: center;
   position: fixed;
-  left: 22px;
+  right: 22px;
   bottom: 22px;
   z-index: 999;
   transition: 0.3s;
   animation: hoverWave linear 1s infinite;
+}
+.callback-bt.-up {
+  bottom: 100px;
 }
 @media (max-width: 767px) {
   .callback-bt {
@@ -2009,8 +2055,8 @@ section {
   opacity: 0;
   font-size: 0;
   position: absolute;
-  right: 4px;
-  top: 22px;
+  right: 1px;
+  top: 20px;
   line-height: 1.2;
   font-weight: 600;
   text-transform: uppercase;
@@ -2019,7 +2065,7 @@ section {
 
 .callback-bt .text-call:hover span {
   opacity: 1;
-  font-size: 10px;
+  font-size: 8px;
 }
 
 .callback-bt:hover i {

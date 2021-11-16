@@ -25,7 +25,7 @@ if (!empty($about['title'])):
 <section class="about">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <h3 class="section-title section-title--left <?php if (!empty($about['subtitle'])) : ?>mb-3<?php endif; ?>" data-aos="fade-up" data-aos-duration="1000">
                     <?php echo $about['title']; ?>
                 </h3>
@@ -34,7 +34,7 @@ if (!empty($about['title'])):
                 <?php endif; ?>
                 <div class="mb-lg-4" data-aos="fade-up" data-aos-duration="1000"><?php echo $about['description']; ?></div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <img src="<?php echo $about['image']; ?>" class="img-fluid" alt="image" data-aos="fade-up" data-aos-duration="1000">
             </div>
         </div>
@@ -57,7 +57,7 @@ if (!empty($whom['title'])):
 <section class="whom bg-rect bg-rect--left">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <h3 class="section-title section-title--left <?php if (!empty($whom['subtitle'])) : ?>mb-3<?php endif; ?>" data-aos="fade-up" data-aos-duration="1000">
                     <?php echo $whom['title']; ?>
                 </h3>
@@ -65,7 +65,7 @@ if (!empty($whom['title'])):
                     <div class="whom-desc" data-aos="fade-up" data-aos-duration="1000"><?php echo $whom['subtitle']; ?></div>
                 <?php endif; ?>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <img src="<?php echo $whom['image']; ?>" class="img-fluid" alt="image" data-aos="fade-up" data-aos-duration="1000">
             </div>
         </div>

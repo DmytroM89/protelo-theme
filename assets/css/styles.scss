@@ -45,7 +45,7 @@ body {
     background: $black-75;
   }
   @include xs {
-    font-size: 24px !important;
+    font-size: 16px !important;
   }
   @media (min-width: $md) {
     font-size: 20px !important;
@@ -65,29 +65,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
   @include lg {
-    font-size: 80px;
+    font-size: 72px;
     margin-bottom: 35px;
   }
   @include md {
-    font-size: 60px;
+    font-size: 52px;
     margin-bottom: 25px;
   }
   @include xs {
-    font-size: 50px;
+    font-size: 42px;
     margin-bottom: 20px;
   }
 }
 h2 {
   @include lg {
-    font-size: 60px;
+    font-size: 54px;
     margin-bottom: 35px;
   }
   @include md {
-    font-size: 50px;
+    font-size: 44px;
     margin-bottom: 25px;
   }
   @include xs {
-    font-size: 44px;
+    font-size: 36px;
     margin-bottom: 20px;
   }
 }
@@ -101,26 +101,26 @@ h3 {
 }
 h4 {
   @media (max-width: $md-top) {
-    font-size: 30px;
+    font-size: 26px;
   }
   @include lg {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 h5 {
   @media (max-width: $md-top) {
-    font-size: 26px;
+    font-size: 22px;
   }
   @include lg {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 h6 {
   @media (max-width: $md-top) {
-    font-size: 24px;
+    font-size: 22px;
   }
   @include lg {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 .fs-18 {
@@ -267,9 +267,14 @@ section {
 }
 .subtitle {
   font-weight: 500;
-  font-size: 28px;
   color: $black-75;
   line-height: 1.2;
+  @include xs {
+    font-size: 22px;
+  }
+  @media (min-width: $md) {
+    font-size: 28px;
+  }
 }
 //============= End Section =============//
 
@@ -289,7 +294,7 @@ section {
 //============= Buttons =============//
 .btn {
   border-radius: 2rem;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 .btn-default {
@@ -531,7 +536,7 @@ section {
   @media (min-width: $md) {
     .s-main-title {
       p {
-        font-size: 28px;
+        font-size: 22px;
         margin-bottom: 0;
       }
     }
@@ -569,10 +574,10 @@ section {
     transform: rotate(-90deg);
     @include xs {
       left: 77%;
-      bottom: 10%;
+      bottom: 25%;
     }
     @media (min-width: $md) and (max-width: 1023px) {
-      bottom: 10%;
+      bottom: 20%;
       left: 85%;
     }
     @media (min-width: 1024px) {
@@ -784,7 +789,7 @@ section {
     flex-direction: column;
     align-items: center;
     @include element(icon) {
-      margin-bottom: .25rem;
+      margin-bottom: .5rem;
       i {
         font-size: 40px;
       }
@@ -794,32 +799,49 @@ section {
       text-align: center;
       line-height: 1.2;
       padding: 0 2rem;
+      @include xs {
+        font-size: 22px;
+      }
+      @media (min-width: $md) {
+        font-size: 24px;
+      }
     }
   }
   .slider {
     margin-top: 3rem;
-    @include element(item) {
+    .slick-track {
+      @include xs {
+        max-height: 400px;
+      }
+      @media (min-width: $md) {
+        height: 60vh;
+      }
+    }
+    .slick-slide {
+      @include xs {
+        height: auto;
+      }
+
+    }
+    .result-container {
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .slick-track {
       @media (min-width: $md) {
-        height: 60vh;
-        .slick-slide {
-          border-radius: 40px;
-          overflow: hidden;
-        }
+        height: 100%;
       }
     }
     .result-photo {
-      height: 100%;
-      img {
+      @media (min-width: $md) {
         height: 100%;
-        border-radius: 40px;
-        @media (min-width: $md) {
+        img {
           margin: 0 .25rem;
+          height: 100%;
         }
+      }
+      img {
+        border-radius: 40px;
+        object-fit: contain;
       }
     }
   }
@@ -871,7 +893,7 @@ section {
         margin-left: 1.5rem;
         flex: 1;
         .position {
-          font-size: 18px;
+          font-size: 16px;
           color: $black-50;
           line-height: 1.2;
         }
@@ -982,7 +1004,7 @@ section {
     margin-bottom: 2rem;
   }
   @include element(description) {
-    margin-top: 2rem;
+    margin-top: 1rem;
     ul {
       margin-bottom: 0;
       li {
@@ -1062,6 +1084,15 @@ section {
   }
   .description {
     text-align: center;
+    .description-title {
+      margin-bottom: .5rem;
+      @include xs {
+        font-size: 22px;
+      }
+      @media (min-width: $md) {
+        font-size: 24px;
+      }
+    }
   }
 }
 
@@ -1722,11 +1753,14 @@ section {
   cursor: pointer;
   text-align: center;
   position: fixed;
-  left: 22px;
+  right: 22px;
   bottom: 22px;
   z-index: 999;
   transition: .3s;
   animation: hoverWave linear 1s infinite;
+  &.-up {
+    bottom: 100px;
+  }
   @include xs {
     height: 55px;
     width: 55px;
@@ -1754,8 +1788,8 @@ section {
   opacity: 0;
   font-size: 0;
   position: absolute;
-  right: 4px;
-  top: 22px;
+  right: 1px;
+  top: 20px;
   line-height: 1.2;
   font-weight: 600;
   text-transform: uppercase;
@@ -1764,7 +1798,7 @@ section {
 
 .callback-bt .text-call:hover span {
   opacity: 1;
-  font-size: 10px;
+  font-size: 8px;
 }
 .callback-bt:hover i {
   display: none;

@@ -4,8 +4,8 @@ jQuery(document).ready(function($) {
         arrows: true,
         infinite: true,
         dots: true,
-        adaptiveHeight: true,
-        swipe: false
+        adaptiveHeight: false,
+        swipe: true
     });
 
     $('#sReviews').slick({
@@ -14,6 +14,7 @@ jQuery(document).ready(function($) {
         slidesToShow: 2,
         slidesToScroll: 2,
         dots: true,
+        swipe: true,
         responsive: [
             {
                 breakpoint: 1024,
@@ -72,8 +73,10 @@ jQuery(document).ready(function($) {
 
         if(scroll != 0) {
             $('.scroll-up').addClass('-show');
+            $('.callback-bt').addClass('-up');
         } else {
             $('.scroll-up').removeClass('-show');
+            $('.callback-bt').removeClass('-up');
         }
     });
 
